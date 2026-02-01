@@ -131,19 +131,19 @@ export const HomePage = () => {
           <div className="absolute inset-0 hero-gradient" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-4xl pt-32 lg:pt-0">
-            <motion.p variants={fadeUp} className="label-text mb-4">Direct Mill Access · Coimbatore, South India</motion.p>
-            <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-industrial-orange mb-6">TNTX</motion.h1>
-            <motion.p variants={fadeUp} className="font-body text-lg text-industrial-smoke max-w-2xl mb-8">Meet mills. See real ex-mill pricing.<br />Build your supplier map—without middlemen.</motion.p>
-            <motion.div variants={fadeUp}>
+          <div className="max-w-4xl pt-32 lg:pt-0">
+            <p className="label-text mb-4">Direct Mill Access · Coimbatore, South India</p>
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-industrial-orange mb-6">TNTX</h1>
+            <p className="font-body text-lg text-industrial-smoke max-w-2xl mb-8">Meet mills. See real ex-mill pricing.<br />Build your supplier map—without middlemen.</p>
+            <div>
               <Link to="/apply"><Button data-testid="hero-apply-btn" size="lg" className="btn-slide bg-industrial-orange hover:bg-industrial-orange/90 text-white font-heading uppercase tracking-widest px-8 py-6 rounded-none">Apply for the Intensive<ArrowRight className="ml-2 h-5 w-5" /></Button></Link>
-            </motion.div>
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-6 mt-12 pt-8 border-t border-industrial-zinc">
+            </div>
+            <div className="flex flex-wrap gap-6 mt-12 pt-8 border-t border-industrial-zinc">
               <div className="flex items-center gap-3"><Users className="h-5 w-5 text-industrial-orange" /><span className="font-body text-white">15 people</span></div>
               <div className="flex items-center gap-3"><Calendar className="h-5 w-5 text-industrial-orange" /><span className="font-body text-white">9 days</span></div>
               <div className="flex items-center gap-3"><MapPin className="h-5 w-5 text-industrial-orange" /><span className="font-body text-white">Coimbatore</span></div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           <motion.div variants={fadeUp} className="mt-16 w-full max-w-none">
             <div className="flex flex-col md:flex-row items-center justify-between gap-12 w-full border-t border-industrial-zinc/50 pt-8 backdrop-blur-sm bg-black/20 p-8 rounded-lg">

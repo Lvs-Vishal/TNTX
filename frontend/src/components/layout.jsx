@@ -16,7 +16,7 @@ export const Navigation = () => {
             to="/"
             className="font-heading text-white text-lg tracking-wider hover:text-industrial-orange transition-colors flex items-center h-full leading-none gap-2"
           >
-            TNTX <span className="text-xs text-industrial-orange opacity-50 font-body">v2</span>
+            TNTX <span className="text-xs text-industrial-orange opacity-50 font-body">v3</span>
           </Link>
 
           {/* Desktop Navigation */}
