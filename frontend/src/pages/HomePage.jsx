@@ -125,7 +125,7 @@ export const HomePage = () => {
   return (
     <>
       {/* Hero */}
-      <section data-testid="hero-section" className="relative min-h-screen flex flex-col justify-end pb-20 lg:pb-32">
+      <section data-testid="hero-section" className="relative min-h-[100dvh] flex flex-col justify-end pb-20 lg:pb-32">
         <div className="absolute inset-0 z-0">
           <img src="https://images.unsplash.com/photo-1636986056375-184676d8ca14?q=80&w=2070" alt="Mill" className="w-full h-full object-cover industrial-image" />
           <div className="absolute inset-0 hero-gradient" />
