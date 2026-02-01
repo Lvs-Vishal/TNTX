@@ -6,8 +6,8 @@ import { Separator } from "@/components/ui/separator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Factory, Users, Calendar, CheckCircle2, XCircle, ArrowRight, Sparkles, Eye, Shield, GraduationCap, MapPin, Clock, Target, Quote, HelpCircle, AlertCircle, ChevronRight } from "lucide-react";
 
-// Cohort date - June 7, 2025
-const COHORT_START = new Date("2025-06-07T00:00:00");
+// Cohort date - June 7, 2026
+const COHORT_START = new Date("2026-06-07T00:00:00");
 
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } };
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
