@@ -72,8 +72,8 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070"
-          alt="Textile Mill Interior"
+          src="https://images.unsplash.com/photo-1636986056375-184676d8ca14?q=80&w=2070"
+          alt="Textile Mill Interior - Spinning Mills"
           className="w-full h-full object-cover industrial-image"
         />
         <div className="absolute inset-0 hero-gradient" />
@@ -317,8 +317,8 @@ const CorePromise = () => {
       {/* Background Image */}
       <div className="absolute inset-0 opacity-10">
         <img
-          src="https://images.unsplash.com/photo-1592924937536-05248c645785?q=80&w=2070"
-          alt="Cotton Processing"
+          src="https://images.unsplash.com/photo-1760818072388-4604d5cb39ac?q=80&w=2070"
+          alt="Yarn Spinning"
           className="w-full h-full object-cover"
         />
       </div>
@@ -394,8 +394,8 @@ const WhatHappens = () => {
             {/* Image */}
             <motion.div variants={fadeUp} className="relative">
               <img
-                src="https://images.unsplash.com/photo-1669228488520-e47813a401f8?q=80&w=2070"
-                alt="Textile Production"
+                src="https://images.unsplash.com/photo-1764114909312-c27b89ec7223?q=80&w=2070"
+                alt="Workers in Textile Factory"
                 className="w-full h-[400px] lg:h-[500px] object-cover industrial-image"
               />
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-industrial-obsidian">
@@ -745,8 +745,8 @@ const AcademicSection = () => {
 
             <motion.div variants={fadeUp} className="relative">
               <img
-                src="https://images.unsplash.com/photo-1718117075248-3d3c3cd65264?q=80&w=2070"
-                alt="Raw Material"
+                src="https://images.unsplash.com/photo-1632932580949-3182167aaebb?q=80&w=2070"
+                alt="Cotton Yarn Rolls"
                 className="w-full h-[400px] object-cover industrial-image"
               />
             </motion.div>
@@ -881,7 +881,7 @@ const FinalCTA = () => {
       {/* Background */}
       <div className="absolute inset-0 opacity-20">
         <img
-          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070"
+          src="https://images.unsplash.com/photo-1636986056375-184676d8ca14?q=80&w=2070"
           alt="Mill Background"
           className="w-full h-full object-cover industrial-image"
         />
