@@ -125,13 +125,13 @@ export const HomePage = () => {
   return (
     <>
       {/* Hero */}
-      <section data-testid="hero-section" className="relative min-h-screen flex items-end pb-20 lg:pb-32">
+      <section data-testid="hero-section" className="relative min-h-screen flex flex-col justify-end pb-20 lg:pb-32">
         <div className="absolute inset-0 z-0">
           <img src="https://images.unsplash.com/photo-1636986056375-184676d8ca14?q=80&w=2070" alt="Mill" className="w-full h-full object-cover industrial-image" />
           <div className="absolute inset-0 hero-gradient" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-4xl">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-4xl pt-32 lg:pt-0">
             <motion.p variants={fadeUp} className="label-text mb-4">Direct Mill Access · Coimbatore, South India</motion.p>
             <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-industrial-orange mb-6">TNTX</motion.h1>
             <motion.p variants={fadeUp} className="font-body text-lg text-industrial-smoke max-w-2xl mb-8">Meet mills. See real ex-mill pricing.<br />Build your supplier map—without middlemen.</motion.p>
