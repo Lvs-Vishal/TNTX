@@ -1,13 +1,18 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "@/App.css";
 import { motion, useInView, useAnimation } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   Factory,
   Users,
   Calendar,
-  DollarSign,
   CheckCircle2,
   XCircle,
   ArrowRight,
@@ -18,10 +23,17 @@ import {
   MapPin,
   Clock,
   Target,
+  Quote,
+  HelpCircle,
+  AlertCircle,
 } from "lucide-react";
 
 // Google Form URL - Replace with actual form
 const GOOGLE_FORM_URL = "https://forms.google.com/your-form-url";
+
+// Cohort dates
+const COHORT_START_DATE = new Date("2025-06-07T00:00:00");
+const APPLICATION_DEADLINE = new Date("2025-03-31T23:59:59");
 
 // Animation variants
 const fadeUp = {
@@ -62,6 +74,53 @@ const AnimatedSection = ({ children, className = "" }) => {
   );
 };
 
+// Countdown Timer Component
+const CountdownTimer = ({ targetDate, label }) => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate.getTime() - now;
+
+      if (distance > 0) {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [targetDate]);
+
+  return (
+    <div className="text-center">
+      <p className="label-text mb-3">{label}</p>
+      <div className="flex justify-center gap-3 sm:gap-4">
+        {[
+          { value: timeLeft.days, label: "Days" },
+          { value: timeLeft.hours, label: "Hrs" },
+          { value: timeLeft.minutes, label: "Min" },
+          { value: timeLeft.seconds, label: "Sec" },
+        ].map((item, index) => (
+          <div key={index} className="bg-industrial-steel border border-industrial-zinc px-3 py-2 sm:px-4 sm:py-3 min-w-[60px]">
+            <p className="stat-number text-xl sm:text-2xl">{String(item.value).padStart(2, "0")}</p>
+            <p className="label-text text-[10px] sm:text-xs">{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 // Hero Section
 const Hero = () => {
   return (
@@ -92,7 +151,7 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="label-text mb-4"
           >
-            Direct Mill Access · South India
+            Direct Mill Access · Coimbatore, South India
           </motion.p>
 
           <motion.h1
@@ -100,9 +159,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white leading-[0.95] mb-6"
           >
-            TAMILNADU
-            <br />
-            <span className="text-industrial-orange">TEXTILE EXCHANGE</span>
+            <span className="text-industrial-orange">TNTX</span>
           </motion.h1>
 
           <motion.p
@@ -135,7 +192,7 @@ const Hero = () => {
           <motion.div
             variants={fadeUp}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-industrial-zinc"
+            className="flex flex-wrap gap-6 sm:gap-8 mt-12 pt-8 border-t border-industrial-zinc"
           >
             <div className="flex items-center gap-3">
               <Users className="h-5 w-5 text-industrial-orange" />
@@ -143,15 +200,30 @@ const Hero = () => {
             </div>
             <div className="flex items-center gap-3">
               <Calendar className="h-5 w-5 text-industrial-orange" />
-              <span className="font-body text-white">12 days</span>
+              <span className="font-body text-white">9 days</span>
             </div>
             <div className="flex items-center gap-3">
               <MapPin className="h-5 w-5 text-industrial-orange" />
-              <span className="font-body text-white">South India</span>
+              <span className="font-body text-white">Coimbatore, South India</span>
             </div>
-            <div className="flex items-center gap-3">
-              <DollarSign className="h-5 w-5 text-industrial-orange" />
-              <span className="font-body text-white">$4,500</span>
+          </motion.div>
+
+          {/* Countdown & Deadline */}
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-8 p-4 bg-industrial-steel/50 border border-industrial-zinc"
+          >
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+              <CountdownTimer targetDate={COHORT_START_DATE} label="Cohort Starts June 7th" />
+              <div className="hidden lg:block h-16 w-px bg-industrial-zinc" />
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 text-red-500 mb-2">
+                  <AlertCircle className="h-4 w-4" />
+                  <span className="label-text text-red-500">Applications Close</span>
+                </div>
+                <p className="font-heading text-white text-xl">March 31st, 2025</p>
+              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -187,8 +259,7 @@ const ProblemSection = () => {
               truths.
             </p>
             <p className="text-white font-bold">
-              Tamilnadu Textile Exchange exists to remove every layer between
-              you and the mills.
+              TNTX exists to remove every layer between you and the mills.
             </p>
           </motion.div>
         </AnimatedSection>
@@ -288,7 +359,7 @@ const TargetAudience = () => {
 const CorePromise = () => {
   const promises = [
     {
-      icon: DollarSign,
+      icon: Target,
       title: "True Pricing Benchmarks",
       description: "Yarn → Fabric → Processing → Job Work",
     },
@@ -298,7 +369,7 @@ const CorePromise = () => {
       description: "Build your own, directly with mills",
     },
     {
-      icon: Target,
+      icon: Clock,
       title: "Real Production Limits",
       description: "Understand MOQs, timelines, and capacity",
     },
@@ -468,7 +539,7 @@ const WhatHappens = () => {
 const WhyNotTour = () => {
   const points = [
     { label: "No sponsored factories", icon: Shield },
-    { label: "No commissions from mills", icon: DollarSign },
+    { label: "No commissions from mills", icon: Target },
     { label: "No trader relationships", icon: Users },
     { label: "No eco-marketing bias", icon: Sparkles },
   ];
@@ -621,7 +692,7 @@ const HowItWorks = () => {
             </ul>
             <Separator className="my-6 bg-industrial-zinc" />
             <p className="font-body text-white text-center">
-              At Tamilnadu Textile Exchange,{" "}
+              At TNTX,{" "}
               <span className="text-industrial-orange">
                 the factories are the syllabus.
               </span>
@@ -636,9 +707,9 @@ const HowItWorks = () => {
 // Program Snapshot Section
 const ProgramSnapshot = () => {
   const details = [
-    { value: "8-9", label: "Days", icon: Clock },
+    { value: "9", label: "Days", icon: Clock },
     { value: "15", label: "Max Participants", icon: Users },
-    { value: "$4,500", label: "Investment", icon: DollarSign },
+    { value: "Coimbatore", label: "Location", icon: MapPin },
     { value: "∞", label: "Post-program Access", icon: Factory },
   ];
 
@@ -688,12 +759,77 @@ const ProgramSnapshot = () => {
   );
 };
 
+// Testimonials Section
+const Testimonials = () => {
+  const testimonials = [
+    {
+      quote: "I came expecting a factory tour. I left with 12 direct supplier contacts and a completely different understanding of how pricing actually works in South India.",
+      name: "Sarah Chen",
+      role: "Founder, Sustainable Apparel Co.",
+      location: "Los Angeles, USA",
+    },
+    {
+      quote: "The access we got was unreal. We walked into mills that don't take visitors and negotiated directly with owners. No agents, no markup — just real conversations.",
+      name: "Marcus Williams",
+      role: "Head of Sourcing, Fashion House",
+      location: "London, UK",
+    },
+    {
+      quote: "As a textile family heir, I thought I knew this industry. TNTX showed me the gaps in my understanding and gave me connections outside my family's network.",
+      name: "Priya Sharma",
+      role: "3rd Gen, Textile Business",
+      location: "Mumbai, India",
+    },
+  ];
+
+  return (
+    <section
+      data-testid="testimonials-section"
+      className="py-24 lg:py-32 bg-industrial-steel"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection>
+          <motion.p variants={fadeUp} className="label-text mb-4 text-center">
+            Past Participants
+          </motion.p>
+          <motion.h2
+            variants={fadeUp}
+            className="text-3xl sm:text-4xl lg:text-5xl font-heading text-white mb-16 text-center"
+          >
+            WHAT THEY <span className="text-industrial-orange">SAY</span>
+          </motion.h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                variants={fadeUp}
+                className="bg-industrial-obsidian border border-industrial-zinc p-6 lg:p-8 card-hover"
+              >
+                <Quote className="h-8 w-8 text-industrial-orange/30 mb-4" />
+                <p className="font-body text-industrial-smoke mb-6 leading-relaxed">
+                  "{testimonial.quote}"
+                </p>
+                <div className="border-t border-industrial-zinc pt-4">
+                  <p className="font-heading text-white text-sm">{testimonial.name}</p>
+                  <p className="font-body text-industrial-smoke text-xs">{testimonial.role}</p>
+                  <p className="font-body text-industrial-orange text-xs">{testimonial.location}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+};
+
 // Professors & Students Section
 const AcademicSection = () => {
   return (
     <section
       data-testid="academic-section"
-      className="py-24 lg:py-32 bg-industrial-steel"
+      className="py-24 lg:py-32 bg-industrial-obsidian"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
@@ -719,9 +855,9 @@ const AcademicSection = () => {
                 variants={fadeUp}
                 className="space-y-6 font-body text-industrial-smoke"
               >
-                <div className="bg-industrial-obsidian border border-industrial-zinc p-6">
+                <div className="bg-industrial-steel border border-industrial-zinc p-6">
                   <p className="text-white mb-2">
-                    Professors attend free when bringing 5 students
+                    Professors can be sponsored to audit the course
                   </p>
                   <p className="text-sm">
                     Students accepted even without immediate buying power
@@ -737,8 +873,7 @@ const AcademicSection = () => {
                 </div>
 
                 <p className="text-industrial-orange">
-                  Tamilnadu Textile Exchange complements theory with operational
-                  reality.
+                  TNTX complements theory with operational reality.
                 </p>
               </motion.div>
             </div>
@@ -762,7 +897,7 @@ const AboutSection = () => {
   return (
     <section
       data-testid="about-section"
-      className="py-24 lg:py-32 bg-industrial-obsidian"
+      className="py-24 lg:py-32 bg-industrial-steel"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="max-w-3xl mx-auto text-center">
@@ -773,18 +908,15 @@ const AboutSection = () => {
             variants={fadeUp}
             className="text-3xl sm:text-4xl lg:text-5xl font-heading text-white mb-8"
           >
-            WHAT IS{" "}
-            <span className="text-industrial-orange">
-              TAMILNADU TEXTILE EXCHANGE
-            </span>
+            WHY <span className="text-industrial-orange">TNTX</span>
           </motion.h2>
 
           <motion.div
             variants={fadeUp}
             className="font-body text-industrial-smoke space-y-4 mb-12"
           >
-            <p>
-              A practitioner-led platform built to decode India's textile
+            <p className="text-white text-lg">
+              Tamilnadu Textile Exchange is a practitioner-led platform built to decode India's textile
               ecosystem for global buyers.
             </p>
           </motion.div>
@@ -793,13 +925,13 @@ const AboutSection = () => {
             variants={fadeUp}
             className="grid sm:grid-cols-3 gap-4 text-center"
           >
-            <div className="bg-industrial-steel border border-industrial-zinc p-6">
+            <div className="bg-industrial-obsidian border border-industrial-zinc p-6">
               <p className="font-heading text-white">No brokers</p>
             </div>
-            <div className="bg-industrial-steel border border-industrial-zinc p-6">
+            <div className="bg-industrial-obsidian border border-industrial-zinc p-6">
               <p className="font-heading text-white">No markups</p>
             </div>
-            <div className="bg-industrial-steel border border-industrial-zinc p-6">
+            <div className="bg-industrial-obsidian border border-industrial-zinc p-6">
               <p className="font-heading text-white">No storytelling fluff</p>
             </div>
           </motion.div>
@@ -811,6 +943,81 @@ const AboutSection = () => {
             Just direct access to how textiles are actually made, priced, and
             negotiated.
           </motion.p>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+};
+
+// FAQ Section
+const FAQSection = () => {
+  const faqs = [
+    {
+      question: "What are the eligibility criteria for TNTX?",
+      answer: "We accept fashion brand founders, textile business heirs, sourcing professionals, and professors with student cohorts. You should have a genuine intent to source from Indian mills or learn the ecosystem for professional purposes. This is not for tourists, dropshippers, or content creators looking for factory footage.",
+    },
+    {
+      question: "How competitive is the application process?",
+      answer: "We cap each cohort at 15 participants to ensure real access. Selection is based on fit, not just ability to pay. We look for serious intent, relevant background, and how you'll use the knowledge. Expect a screening call after your application.",
+    },
+    {
+      question: "What happens during the screening call?",
+      answer: "A 20-30 minute conversation to understand your background, sourcing goals, and expectations. We want to ensure TNTX is the right fit for you and that you're the right fit for the cohort. It's not an interview — it's a mutual evaluation.",
+    },
+    {
+      question: "Is prior textile industry experience required?",
+      answer: "No. We accept students and early-career professionals. What matters is genuine interest in understanding textile sourcing and a willingness to engage deeply during the 9 days.",
+    },
+    {
+      question: "What's included in the program?",
+      answer: "Mill visits across the entire value chain, direct meetings with mill owners and production managers, real cost breakdowns, and post-program supplier contacts. Accommodation and local transport during the program are included. International travel is your responsibility.",
+    },
+    {
+      question: "Can professors get sponsored?",
+      answer: "Yes. Professors can be sponsored to audit the course. Contact us directly to discuss sponsorship arrangements for academic cohorts.",
+    },
+    {
+      question: "What happens after the program?",
+      answer: "Your supplier contacts remain open. You can continue conversations with mills you connected with. Many participants place their first orders within weeks of completing TNTX.",
+    },
+  ];
+
+  return (
+    <section
+      data-testid="faq-section"
+      className="py-24 lg:py-32 bg-industrial-obsidian"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="max-w-3xl mx-auto">
+          <motion.div variants={fadeUp} className="flex items-center justify-center gap-3 mb-4">
+            <HelpCircle className="h-6 w-6 text-industrial-orange" />
+            <p className="label-text">Frequently Asked</p>
+          </motion.div>
+          <motion.h2
+            variants={fadeUp}
+            className="text-3xl sm:text-4xl lg:text-5xl font-heading text-white mb-12 text-center"
+          >
+            ADMISSION <span className="text-industrial-orange">FAQ</span>
+          </motion.h2>
+
+          <motion.div variants={fadeUp}>
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="bg-industrial-steel border border-industrial-zinc px-6"
+                >
+                  <AccordionTrigger className="font-heading text-white text-left hover:text-industrial-orange hover:no-underline py-6">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="font-body text-industrial-smoke pb-6 leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </motion.div>
         </AnimatedSection>
       </div>
     </section>
@@ -864,6 +1071,12 @@ const ApplicationProcess = () => {
             <p className="font-heading text-white text-xl">
               Access is intentional.
             </p>
+            <div className="mt-4 pt-4 border-t border-industrial-zinc">
+              <p className="text-red-500 font-body text-sm flex items-center justify-center gap-2">
+                <AlertCircle className="h-4 w-4" />
+                Applications close March 31st, 2025
+              </p>
+            </div>
           </motion.div>
         </AnimatedSection>
       </div>
@@ -876,7 +1089,7 @@ const FinalCTA = () => {
   return (
     <section
       data-testid="final-cta-section"
-      className="py-24 lg:py-40 bg-industrial-obsidian relative"
+      className="py-24 lg:py-32 bg-industrial-obsidian relative"
     >
       {/* Background */}
       <div className="absolute inset-0 opacity-20">
@@ -893,22 +1106,15 @@ const FinalCTA = () => {
           <motion.p variants={fadeUp} className="label-text mb-4">
             Final Positioning
           </motion.p>
-          <motion.h2
-            variants={fadeUp}
-            className="text-3xl sm:text-4xl lg:text-5xl font-heading text-white mb-8"
-          >
-            THIS IS NOT{" "}
-            <span className="text-industrial-orange">EDUCATION TOURISM</span>
-          </motion.h2>
-
+          
           <motion.div
             variants={fadeUp}
-            className="font-body text-industrial-smoke space-y-4 mb-12"
+            className="font-body text-industrial-smoke space-y-3 mb-10"
           >
-            <p>It is not networking.</p>
-            <p className="text-white text-xl">
+            <p className="text-sm">This is not education tourism.</p>
+            <p className="text-sm">It is not networking.</p>
+            <p className="text-white text-base">
               It is <span className="text-industrial-orange">industry entry</span>—
-              <br />
               for people who want control, clarity, and long-term sourcing
               independence.
             </p>
@@ -935,12 +1141,12 @@ const FinalCTA = () => {
               <p className="label-text">People</p>
             </div>
             <div className="text-center">
-              <p className="stat-number text-2xl">12</p>
+              <p className="stat-number text-2xl">9</p>
               <p className="label-text">Days</p>
             </div>
             <div className="text-center">
-              <p className="stat-number text-2xl">$4,500</p>
-              <p className="label-text">Investment</p>
+              <p className="stat-number text-2xl">June 7</p>
+              <p className="label-text">Cohort Start</p>
             </div>
           </motion.div>
         </AnimatedSection>
@@ -959,7 +1165,7 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <a href="#" className="font-heading text-white text-lg tracking-wider">
-            TTE
+            TNTX
           </a>
           <Button
             data-testid="nav-apply-btn"
@@ -986,14 +1192,14 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <p className="font-heading text-white text-xl tracking-wider mb-2">
-              TAMILNADU TEXTILE EXCHANGE
+              TNTX
             </p>
             <p className="font-body text-industrial-smoke text-sm">
               Direct mill access. No middlemen.
             </p>
           </div>
           <p className="font-body text-industrial-smoke text-sm">
-            © {new Date().getFullYear()} Tamilnadu Textile Exchange
+            © {new Date().getFullYear()} TNTX
           </p>
         </div>
       </div>
@@ -1020,8 +1226,10 @@ function App() {
         <WhyNotTour />
         <HowItWorks />
         <ProgramSnapshot />
+        <Testimonials />
         <AcademicSection />
         <AboutSection />
+        <FAQSection />
         <ApplicationProcess />
         <FinalCTA />
       </main>
