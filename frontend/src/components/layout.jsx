@@ -14,9 +14,9 @@ export const Navigation = () => {
           {/* Logo - Aligned to be centered vertically always */}
           <Link
             to="/"
-            className="font-heading text-white text-lg tracking-wider hover:text-industrial-orange transition-colors flex items-center h-full leading-none gap-2"
+            className="font-heading text-white text-lg tracking-wider hover:text-industrial-orange transition-colors flex items-center h-full leading-none"
           >
-            TNTX <span className="text-xs text-industrial-orange opacity-50 font-body">v3</span>
+            TNTX
           </Link>
 
           {/* Desktop Navigation */}
