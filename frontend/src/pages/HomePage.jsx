@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Factory, Users, Calendar, CheckCircle2, XCircle, ArrowRight, Sparkles, Eye, Shield, GraduationCap, MapPin, Clock, Target, Quote, HelpCircle, AlertCircle, ChevronRight } from "lucide-react";
 
+// Cohort date - June 7, 2025
 const COHORT_START = new Date("2025-06-07T00:00:00");
 
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } };
@@ -19,29 +20,42 @@ const AnimatedSection = ({ children, className = "" }) => {
   return <motion.div ref={ref} initial="hidden" animate={controls} variants={stagger} className={className}>{children}</motion.div>;
 };
 
+const calculateTimeLeft = (targetDate) => {
+  const now = new Date().getTime();
+  const distance = targetDate.getTime() - now;
+  if (distance > 0) {
+    return {
+      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((distance % (1000 * 60)) / 1000),
+    };
+  }
+  return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+};
+
 const CountdownTimer = ({ targetDate, label }) => {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft(targetDate));
+  
   useEffect(() => {
     const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
-      if (distance > 0) {
-        setTimeLeft({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000),
-        });
-      }
+      setTimeLeft(calculateTimeLeft(targetDate));
     }, 1000);
     return () => clearInterval(timer);
   }, [targetDate]);
 
+  const items = [
+    { v: timeLeft.days, l: "Days" },
+    { v: timeLeft.hours, l: "Hrs" },
+    { v: timeLeft.minutes, l: "Min" },
+    { v: timeLeft.seconds, l: "Sec" }
+  ];
+
   return (
-    <div className="text-center">
+    <div className="text-center" data-testid="countdown-timer">
       <p className="label-text mb-3">{label}</p>
       <div className="flex justify-center gap-3">
-        {[{ v: timeLeft.days, l: "Days" }, { v: timeLeft.hours, l: "Hrs" }, { v: timeLeft.minutes, l: "Min" }, { v: timeLeft.seconds, l: "Sec" }].map((item, i) => (
+        {items.map((item, i) => (
           <div key={i} className="bg-industrial-steel border border-industrial-zinc px-3 py-2 min-w-[60px]">
             <p className="stat-number text-xl">{String(item.v).padStart(2, "0")}</p>
             <p className="label-text text-[10px]">{item.l}</p>
