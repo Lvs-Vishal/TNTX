@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView, useAnimation, useMotionValue, useTransform, animate } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -46,6 +46,35 @@ const AnimatedSection = ({ children, className = "" }) => {
   return <motion.div ref={ref} initial="hidden" animate={controls} variants={stagger} className={className}>{children}</motion.div>;
 };
 
+// Typing animation component with cursor
+const TypingText = ({ text, delay = 0, className = "", onComplete }) => {
+  const [displayedText, setDisplayedText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showCursor, setShowCursor] = useState(true);
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText(prev => prev + text[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, 30); // Faster typing speed
+      return () => clearTimeout(timeout);
+    } else {
+      const timeout = setTimeout(() => {
+        setShowCursor(false);
+        if (onComplete) onComplete();
+      }, 1000);
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, text, delay, onComplete]);
+
+  return (
+    <span className={className}>
+      {displayedText}
+      {showCursor && <span className="animate-pulse text-industrial-orange">|</span>}
+    </span>
+  );
+};
 
 
 const calculateTimeLeft = (targetDate) => {
@@ -102,7 +131,7 @@ export const HomePage = () => {
   const idealFor = ["Fashion & apparel brand founders", "Textile family business heirs", "Sourcing heads & buying managers", "Professors with student cohorts"];
   const notFor = ["Tourists", "Dropshippers", "Influencers"];
   const promises = [
-    { icon: Target, title: "True Pricing Benchmarks", desc: "Yarn → Fabric → Processing" },
+    { icon: Target, title: "True Pricing Benchmarks", desc: "Yarn ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ Fabric ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ Processing" },
     { icon: Factory, title: "Verified Supplier List", desc: "Build your own, directly" },
     { icon: Clock, title: "Real Production Limits", desc: "MOQs, timelines, capacity" },
     { icon: Shield, title: "Complete Independence", desc: "No traders or brokers" },
@@ -125,58 +154,143 @@ export const HomePage = () => {
   return (
     <>
       {/* Hero */}
-      <section data-testid="hero-section" className="relative min-h-[100dvh] flex flex-col justify-end pb-20 lg:pb-32">
+      <section data-testid="hero-section" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
+        {/* Background with enhanced overlay */}
         <div className="absolute inset-0 z-0">
-          <img src="https://images.unsplash.com/photo-1636986056375-184676d8ca14?q=80&w=2070" alt="Mill" className="w-full h-full object-cover industrial-image" />
-          <div className="absolute inset-0 hero-gradient" />
+          <img src="/images/factory-floor.png" alt="Textile Mill Factory Floor" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-industrial-orange/20" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)]" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="max-w-4xl">
-            <p className="label-text mb-4 text-industrial-smoke">Direct Mill Access · Coimbatore, South India</p>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-industrial-orange mb-6 leading-tight">TNTX</h1>
-            <p className="font-body text-lg sm:text-xl text-industrial-smoke max-w-2xl mb-8 leading-relaxed">Meet mills. See real ex-mill pricing.<br />Build your supplier map—without middlemen.</p>
-            <div>
-              <Link to="/apply"><Button data-testid="hero-apply-btn" size="lg" className="btn-slide bg-industrial-orange hover:bg-industrial-orange/90 text-white font-heading uppercase tracking-widest px-8 py-6 rounded-none">Apply for the Intensive<ArrowRight className="ml-2 h-5 w-5" /></Button></Link>
-            </div>
-            <div className="flex flex-wrap gap-6 mt-12 pt-8 border-t border-industrial-zinc">
-              <div className="flex items-center gap-3"><Users className="h-5 w-5 text-industrial-orange" /><span className="font-body text-white">15 people</span></div>
-              <div className="flex items-center gap-3"><Calendar className="h-5 w-5 text-industrial-orange" /><span className="font-body text-white">9 days</span></div>
-              <div className="flex items-center gap-3"><MapPin className="h-5 w-5 text-industrial-orange" /><span className="font-body text-white">Coimbatore</span></div>
-            </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 z-[1] overflow-hidden">
+          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-industrial-orange/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-industrial-orange/5 rounded-full blur-3xl" />
+        </div>
+
+        {/* Main Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
+          <div className="text-center max-w-5xl mx-auto">
+            {/* Label */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="mb-8"
+            >
+              <span className="inline-block px-6 py-3 bg-industrial-orange/10 border border-industrial-orange/30 rounded-full backdrop-blur-sm">
+                <span className="text-industrial-orange uppercase tracking-[0.3em] text-xs font-bold">
+                  Direct Mill Access · Coimbatore, South India
+                </span>
+              </span>
+            </motion.div>
+
+            {/* Main Heading with Typing Animation */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="mb-10"
+            >
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold leading-tight mb-6">
+                <span className="block mb-3 bg-gradient-to-r from-white via-white to-gray-300 bg-clip-text text-transparent drop-shadow-2xl">
+                  <TypingText text="Meet mills. See real ex-mill pricing." />
+                </span>
+                <span className="block bg-gradient-to-r from-industrial-orange via-orange-400 to-industrial-orange bg-clip-text text-transparent drop-shadow-2xl">
+                  <TypingText text="Learn how sourcing really works." delay={1500} />
+                </span>
+              </h1>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 3.5 }}
+                className="font-body text-lg sm:text-xl text-white/90 font-light tracking-wide mt-6"
+              >
+                Build your own supplier map. Operate without middlemen.
+              </motion.p>
+            </motion.div>
+
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+              className="mb-16"
+            >
+              <a href="https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y" target="_blank" rel="noopener noreferrer">
+                <Button
+                  data-testid="hero-apply-btn"
+                  size="lg"
+                  className="bg-industrial-orange hover:bg-orange-600 text-white font-heading uppercase tracking-widest px-12 py-8 text-lg rounded-none shadow-2xl hover:shadow-industrial-orange/50 transition-all duration-300 hover:scale-105 relative overflow-hidden group"
+                >
+                  <span className="relative z-10 flex items-center">
+                    Apply for the Intensive
+                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </Button>
+              </a>
+            </motion.div>
+
+            {/* Stats Grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+              className="grid grid-cols-3 gap-4 sm:gap-8 max-w-3xl mx-auto"
+            >
+              <div className="group bg-black/40 backdrop-blur-md border border-white/10 hover:border-industrial-orange/50 p-6 rounded-lg transition-all duration-300 hover:bg-black/60">
+                <Users className="h-8 w-8 text-industrial-orange mx-auto mb-3" />
+                <div className="text-3xl sm:text-4xl font-heading font-bold text-white mb-1">15</div>
+                <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider">People</div>
+              </div>
+
+              <div className="group bg-black/40 backdrop-blur-md border border-white/10 hover:border-industrial-orange/50 p-6 rounded-lg transition-all duration-300 hover:bg-black/60">
+                <Calendar className="h-8 w-8 text-industrial-orange mx-auto mb-3" />
+                <div className="text-3xl sm:text-4xl font-heading font-bold text-white mb-1">9</div>
+                <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider">Days</div>
+              </div>
+
+              <div className="group bg-black/40 backdrop-blur-md border border-white/10 hover:border-industrial-orange/50 p-6 rounded-lg transition-all duration-300 hover:bg-black/60">
+                <MapPin className="h-8 w-8 text-industrial-orange mx-auto mb-3" />
+                <div className="text-lg sm:text-xl font-heading font-bold text-white mb-1">CBE</div>
+                <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider">Location</div>
+              </div>
+            </motion.div>
           </div>
 
-          <motion.div variants={fadeUp} className="mt-16 w-full max-w-none">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-12 w-full border-t border-industrial-zinc/50 pt-8 backdrop-blur-sm bg-black/20 p-8 rounded-lg">
-              <div className="flex-1 w-full md:w-auto">
-                <CountdownTimer targetDate={COHORT_START} label="COHORT STARTS JUNE 7TH" />
-              </div>
-
-              <div className="hidden md:block h-20 w-px bg-industrial-zinc/50"></div>
-
-              <div className="flex-1 text-center w-full md:w-auto">
-                <div className="flex items-center justify-center gap-2 text-red-500 mb-3 animate-pulse">
-                  <AlertCircle className="h-4 w-4" />
-                  <span className="label-text text-red-500 tracking-widest text-sm">APPLICATIONS CLOSE</span>
-                </div>
-                <p className="font-heading text-white text-3xl sm:text-4xl tracking-tight">March 31st, 2025</p>
-              </div>
+          {/* Countdown Timer Section */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-12 w-full border-t border-industrial-zinc/50 pt-8 backdrop-blur-sm bg-black/20 p-8 rounded-lg mt-16">
+            <div className="flex-1 w-full md:w-auto">
+              <CountdownTimer targetDate={COHORT_START} label="COHORT STARTS JUNE 7TH" />
             </div>
-          </motion.div>
+
+            <div className="hidden md:block h-20 w-px bg-industrial-zinc/50"></div>
+
+            <div className="flex-1 text-center w-full md:w-auto">
+              <div className="flex items-center justify-center gap-2 text-red-500 mb-3 animate-pulse">
+                <AlertCircle className="h-4 w-4" />
+                <span className="label-text text-red-500 tracking-widest text-sm">APPLICATIONS CLOSE</span>
+              </div>
+              <p className="font-heading text-white text-3xl sm:text-4xl tracking-tight">March 31st, 2025</p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Problem */}
-      < section className="py-24 bg-industrial-obsidian" >
+      <section className="py-24 bg-industrial-obsidian" >
         <div className="max-w-3xl mx-auto px-4 text-center">
           <AnimatedSection>
             <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl font-heading text-white mb-8">MOST PEOPLE <span className="text-industrial-orange">"SOURCE FROM INDIA"</span><br />WITHOUT EVER ENTERING THE SYSTEM</motion.h2>
             <motion.p variants={fadeUp} className="font-body text-industrial-smoke">They deal with agents, traders, curated factories. <span className="text-white font-bold">TNTX exists to remove every layer between you and the mills.</span></motion.p>
           </AnimatedSection>
         </div>
-      </section >
+      </section>
 
       {/* Audience */}
-      < section className="py-24 bg-industrial-steel" >
+      <section className="py-24 bg-industrial-steel" >
         <div className="max-w-7xl mx-auto px-4">
           <AnimatedSection>
             <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-16 text-center">WHO THIS IS FOR</motion.h2>
@@ -187,15 +301,15 @@ export const HomePage = () => {
               </motion.div>
               <motion.div variants={fadeUp} className="bg-industrial-obsidian border border-red-900/30 p-8">
                 <div className="flex items-center gap-3 mb-6"><XCircle className="h-6 w-6 text-red-500" /><h3 className="font-heading text-xl text-white">NOT FOR</h3></div>
-                <ul className="space-y-4">{notFor.map((item, i) => <li key={i} className="flex items-start gap-3 font-body text-industrial-smoke"><span className="text-red-500">×</span>{item}</li>)}</ul>
+                <ul className="space-y-4">{notFor.map((item, i) => <li key={i} className="flex items-start gap-3 font-body text-industrial-smoke"><span className="text-red-500">—</span>{item}</li>)}</ul>
               </motion.div>
             </div>
           </AnimatedSection>
         </div>
-      </section >
+      </section>
 
       {/* Promise */}
-      < section className="py-24 bg-industrial-obsidian" >
+      <section className="py-24 bg-industrial-obsidian" >
         <div className="max-w-7xl mx-auto px-4">
           <AnimatedSection>
             <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-6 text-center">BY THE END, YOU WILL</motion.h2>
@@ -205,14 +319,14 @@ export const HomePage = () => {
             <motion.p variants={fadeUp} className="font-body text-industrial-smoke text-center mt-12">This is not exposure. <span className="text-industrial-orange font-bold">This is independence.</span></motion.p>
           </AnimatedSection>
         </div>
-      </section >
+      </section>
 
       {/* What Happens */}
-      < section className="py-24 bg-industrial-steel" >
+      <section className="py-24 bg-industrial-steel" >
         <div className="max-w-7xl mx-auto px-4">
           <AnimatedSection>
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <motion.div variants={fadeUp}><img src="https://images.unsplash.com/photo-1764114909312-c27b89ec7223?q=80&w=2070" alt="Factory" className="w-full h-[400px] object-cover industrial-image" /></motion.div>
+              <motion.div variants={fadeUp}><img src="/images/yarn-production.png" alt="Yarn Production Line" className="w-full h-[400px] object-cover industrial-image" /></motion.div>
               <div>
                 <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-8">WHAT ACTUALLY <span className="text-industrial-orange">HAPPENS</span></motion.h2>
                 <motion.div variants={fadeUp}><h3 className="font-heading text-lg text-white mb-4">You Will Visit:</h3><ul className="space-y-2">{visits.map((v, i) => <li key={i} className="flex items-center gap-3 font-body text-industrial-smoke"><Factory className="h-4 w-4 text-industrial-orange" />{v}</li>)}</ul></motion.div>
@@ -220,10 +334,10 @@ export const HomePage = () => {
             </div>
           </AnimatedSection>
         </div>
-      </section >
+      </section>
 
       {/* Value Chain */}
-      < section className="py-24 bg-industrial-obsidian" >
+      <section className="py-24 bg-industrial-obsidian" >
         <div className="max-w-7xl mx-auto px-4">
           <AnimatedSection>
             <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-12 text-center">HOW THE LEARNING <span className="text-industrial-orange">WORKS</span></motion.h2>
@@ -233,15 +347,15 @@ export const HomePage = () => {
             <motion.p variants={fadeUp} className="font-body text-white text-center">At TNTX, <span className="text-industrial-orange">the factories are the syllabus.</span></motion.p>
           </AnimatedSection>
         </div>
-      </section >
+      </section>
 
       {/* Program Snapshot */}
-      < section className="py-24 bg-industrial-steel" >
+      <section className="py-24 bg-industrial-steel" >
         <div className="max-w-7xl mx-auto px-4">
           <AnimatedSection>
             <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-16 text-center">PROGRAM <span className="text-industrial-orange">SNAPSHOT</span></motion.h2>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {[{ v: "9", l: "Days", icon: Clock }, { v: "15", l: "Max Participants", icon: Users }, { v: "Coimbatore", l: "Location", icon: MapPin }, { v: "∞", l: "Post-program Access", icon: Factory }].map((d, i) => (
+              {[{ v: "9", l: "Days", icon: Clock }, { v: "15", l: "Max Participants", icon: Users }, { v: "Coimbatore", l: "Location", icon: MapPin }, { v: "Lifetime", l: "Post-program Access", icon: Factory }].map((d, i) => (
                 <motion.div key={i} variants={fadeUp} className="bg-industrial-obsidian border border-industrial-zinc p-6 text-center">
                   <d.icon className="h-6 w-6 text-industrial-orange mx-auto mb-4" />
                   <div className={`stat-number mb-2 ${d.v === "Coimbatore" ? "!text-3xl sm:!text-4xl" : ""}`}>{d.v}</div>
@@ -251,10 +365,10 @@ export const HomePage = () => {
             </div>
           </AnimatedSection>
         </div>
-      </section >
+      </section>
 
       {/* Testimonials */}
-      < section className="py-24 bg-industrial-obsidian" >
+      <section className="py-24 bg-industrial-obsidian" >
         <div className="max-w-7xl mx-auto px-4">
           <AnimatedSection>
             <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-16 text-center">WHAT THEY <span className="text-industrial-orange">SAY</span></motion.h2>
@@ -263,10 +377,10 @@ export const HomePage = () => {
             </div>
           </AnimatedSection>
         </div>
-      </section >
+      </section>
 
       {/* Academic */}
-      < section className="py-24 bg-industrial-steel" >
+      <section className="py-24 bg-industrial-steel" >
         <div className="max-w-7xl mx-auto px-4">
           <AnimatedSection>
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -278,14 +392,14 @@ export const HomePage = () => {
                   <p className="text-industrial-orange">TNTX complements theory with operational reality.</p>
                 </motion.div>
               </div>
-              <motion.div variants={fadeUp}><img src="https://images.unsplash.com/photo-1632932580949-3182167aaebb?q=80&w=2070" alt="Yarn" className="w-full h-[400px] object-cover industrial-image" /></motion.div>
+              <motion.div variants={fadeUp}><img src="/images/textile-manufacturing.png" alt="Textile Manufacturing Process" className="w-full h-[400px] object-cover industrial-image" /></motion.div>
             </div>
           </AnimatedSection>
         </div>
-      </section >
+      </section>
 
       {/* Why TNTX */}
-      < section className="py-24 bg-industrial-obsidian" >
+      <section className="py-24 bg-industrial-obsidian" >
         <div className="max-w-3xl mx-auto px-4 text-center">
           <AnimatedSection>
             <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-8">WHY <span className="text-industrial-orange">TNTX</span></motion.h2>
@@ -294,25 +408,25 @@ export const HomePage = () => {
             <motion.div variants={fadeUp} className="mt-8"><Link to="/about"><Button variant="outline" className="border-industrial-orange text-industrial-orange hover:bg-industrial-orange hover:text-white rounded-none">Learn More<ChevronRight className="ml-2 h-4 w-4" /></Button></Link></motion.div>
           </AnimatedSection>
         </div>
-      </section >
+      </section>
 
       {/* FAQ */}
-      < section className="py-24 bg-industrial-steel" >
+      <section className="py-24 bg-industrial-steel" >
         <div className="max-w-3xl mx-auto px-4">
           <AnimatedSection>
             <motion.div variants={fadeUp} className="flex items-center justify-center gap-3 mb-4"><HelpCircle className="h-6 w-6 text-industrial-orange" /><p className="label-text">Frequently Asked</p></motion.div>
             <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-12 text-center">ADMISSION <span className="text-industrial-orange">FAQ</span></motion.h2>
             <motion.div variants={fadeUp}>
               <Accordion type="single" collapsible className="space-y-4">
-                {faqs.map((f, i) => <AccordionItem key={i} value={`item-${i}`} className="bg-industrial-obsidian border border-industrial-zinc px-6"><AccordionTrigger className="font-heading text-white text-left hover:text-industrial-orange hover:no-underline py-6">{f.q}</AccordionTrigger><AccordionContent className="font-body text-industrial-smoke pb-6">{f.a}</AccordionContent></AccordionItem>)}
+                {faqs.map((f, i) => <AccordionItem key={i} value={`item-${i}`} className="bg-industrial-obsidian border border-industrial-zinc px-6"><AccordionTrigger className="font-heading text-xl sm:text-2xl text-white text-left hover:text-industrial-orange hover:no-underline py-6">{f.q}</AccordionTrigger><AccordionContent className="font-body text-lg text-industrial-smoke pb-6">{f.a}</AccordionContent></AccordionItem>)}
               </Accordion>
             </motion.div>
           </AnimatedSection>
         </div>
-      </section >
+      </section>
 
       {/* Application Process */}
-      < section className="py-24 bg-industrial-obsidian" >
+      <section className="py-24 bg-industrial-obsidian" >
         <div className="max-w-3xl mx-auto px-4">
           <AnimatedSection>
             <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-12 text-center">APPLICATION <span className="text-industrial-orange">PROCESS</span></motion.h2>
@@ -325,17 +439,17 @@ export const HomePage = () => {
             </motion.div>
           </AnimatedSection>
         </div>
-      </section >
+      </section>
 
       {/* Final CTA */}
-      < section className="py-24 bg-industrial-steel relative" >
+      <section className="py-24 bg-industrial-steel relative" >
         <div className="max-w-3xl mx-auto px-4 text-center">
           <AnimatedSection>
             <motion.div variants={fadeUp} className="font-body text-industrial-smoke space-y-3 mb-10">
               <p className="text-sm">This is not education tourism. It is not networking.</p>
-              <p className="text-white text-base">It is <span className="text-industrial-orange">industry entry</span>— for people who want control, clarity, and long-term sourcing independence.</p>
+              <p className="text-white text-base">It is <span className="text-industrial-orange">industry entry</span> — for people who want control, clarity, and long-term sourcing independence.</p>
             </motion.div>
-            <motion.div variants={fadeUp}><Link to="/apply"><Button data-testid="final-apply-btn" size="lg" className="btn-slide bg-industrial-orange hover:bg-industrial-orange/90 text-white font-heading uppercase tracking-widest px-12 py-8 text-lg rounded-none">Apply for the Intensive<ArrowRight className="ml-3 h-6 w-6" /></Button></Link></motion.div>
+            <motion.div variants={fadeUp}><a href="https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y" target="_blank" rel="noopener noreferrer"><Button data-testid="final-apply-btn" size="lg" className="btn-slide bg-industrial-orange hover:bg-industrial-orange/90 text-white font-heading uppercase tracking-widest px-12 py-8 text-lg rounded-none">Apply for the Intensive<ArrowRight className="ml-3 h-6 w-6" /></Button></a></motion.div>
             <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16 border-t border-industrial-zinc pt-12">
               {[{ v: "15", l: "People" }, { v: "9", l: "Days" }, { v: "June 7", l: "Start" }].map((s, i) => (
                 <motion.div
@@ -356,7 +470,11 @@ export const HomePage = () => {
             </motion.div>
           </AnimatedSection>
         </div>
-      </section >
+      </section>
     </>
   );
 };
+
+
+
+

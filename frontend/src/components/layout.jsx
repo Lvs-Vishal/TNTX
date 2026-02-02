@@ -27,7 +27,7 @@ export const Navigation = () => {
             <Link to="/contact" className="font-body text-industrial-smoke hover:text-white text-sm transition-colors">
               Contact
             </Link>
-            <Link to="/apply">
+            <a href="https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y" target="_blank" rel="noopener noreferrer">
               <Button
                 data-testid="nav-apply-btn"
                 size="sm"
@@ -35,7 +35,7 @@ export const Navigation = () => {
               >
                 Apply Now
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Navigation */}
@@ -54,13 +54,13 @@ export const Navigation = () => {
                   <Link to="/contact" className="font-heading text-xl text-white hover:text-industrial-orange transition-colors">
                     Contact
                   </Link>
-                  <Link to="/apply">
+                  <a href="https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y" target="_blank" rel="noopener noreferrer">
                     <Button
                       className="w-full bg-industrial-orange hover:bg-industrial-orange/90 text-white font-heading uppercase tracking-widest"
                     >
                       Apply Now
                     </Button>
-                  </Link>
+                  </a>
                 </nav>
               </SheetContent>
             </Sheet>
