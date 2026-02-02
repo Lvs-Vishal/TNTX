@@ -131,10 +131,10 @@ export const HomePage = () => {
           <div className="absolute inset-0 hero-gradient" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="max-w-4xl pt-32 lg:pt-0">
-            <p className="label-text mb-4">Direct Mill Access · Coimbatore, South India</p>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-industrial-orange mb-6">TNTX</h1>
-            <p className="font-body text-lg text-industrial-smoke max-w-2xl mb-8">Meet mills. See real ex-mill pricing.<br />Build your supplier map—without middlemen.</p>
+          <div className="max-w-4xl">
+            <p className="label-text mb-4 text-industrial-smoke">Direct Mill Access · Coimbatore, South India</p>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-industrial-orange mb-6 leading-tight">TNTX</h1>
+            <p className="font-body text-lg sm:text-xl text-industrial-smoke max-w-2xl mb-8 leading-relaxed">Meet mills. See real ex-mill pricing.<br />Build your supplier map—without middlemen.</p>
             <div>
               <Link to="/apply"><Button data-testid="hero-apply-btn" size="lg" className="btn-slide bg-industrial-orange hover:bg-industrial-orange/90 text-white font-heading uppercase tracking-widest px-8 py-6 rounded-none">Apply for the Intensive<ArrowRight className="ml-2 h-5 w-5" /></Button></Link>
             </div>
