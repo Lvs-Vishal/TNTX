@@ -125,7 +125,7 @@ export const AboutPage = () => {
           </div>
 
           <p className="font-body text-industrial-orange mt-8 leading-relaxed">
-            Here, you don't just visit factories; you trace the lifeline of a garment from dirt to distribution.
+            Don't just visit factories; trace the lifeline of a garment from dirt to distribution.
           </p>
         </div>
       </section>
@@ -137,7 +137,7 @@ export const AboutPage = () => {
             Our Philosophy: <span className="text-industrial-orange">This is Anti-Tourism</span>
           </h2>
           <p className="font-body text-white mb-8 leading-relaxed text-lg">
-            We do not offer "Industrial Tourism." There are no welcome drinks, no rehearsed presentations, and no sanitized walkways.
+            There are no welcome drinks, no rehearsed presentations, and no sanitized walkways.
           </p>
 
           <div className="bg-industrial-steel border border-industrial-orange/30 p-8">

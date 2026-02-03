@@ -131,7 +131,7 @@ export const HomePage = () => {
   const idealFor = ["Fashion & apparel brand founders", "Textile family business heirs", "Sourcing heads & buying managers", "Professors with student cohorts"];
   const notFor = ["Tourists", "Dropshippers", "Influencers"];
   const promises = [
-    { icon: Target, title: "True Pricing Benchmarks", desc: "Yarn ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ Fabric ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ Processing" },
+    { icon: Target, title: "True Pricing Benchmarks", desc: "Yarn → Fabric → Processing" },
     { icon: Factory, title: "Verified Supplier List", desc: "Build your own, directly" },
     { icon: Clock, title: "Real Production Limits", desc: "MOQs, timelines, capacity" },
     { icon: Shield, title: "Complete Independence", desc: "No traders or brokers" },
@@ -147,7 +147,7 @@ export const HomePage = () => {
     { q: "What are the eligibility criteria?", a: "Fashion brand founders, textile business heirs, sourcing professionals, and professors. Genuine intent required." },
     { q: "How competitive is admission?", a: "15 participants per cohort. Selection based on fit, not just ability to pay." },
     { q: "Is prior experience required?", a: "No. Students and early-career professionals accepted. What matters is genuine interest." },
-    { q: "What's included?", a: "Mill visits, direct meetings with owners, cost breakdowns, accommodation, local transport. International travel not included." },
+    { q: "What's included?", a: <span>Visa Assistance, Executive Accommodation, Meals & Refreshments, Local Transfers via Private SUV, Mill Factory Floor Visits, Direct meetings with Owners.<br /><span className="block mt-2 font-black text-red-500 animate-pulse uppercase tracking-wider">International Flights not included</span></span> },
     { q: "Can professors get sponsored?", a: "Yes. Professors can be sponsored to audit the course. Contact us directly." },
   ];
 
@@ -312,7 +312,7 @@ export const HomePage = () => {
       <section className="py-24 bg-industrial-obsidian" >
         <div className="max-w-7xl mx-auto px-4">
           <AnimatedSection>
-            <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-6 text-center">BY THE END, YOU WILL</motion.h2>
+            <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-6 text-center">BY THE END, YOU WILL GET</motion.h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {promises.map((p, i) => <motion.div key={i} variants={fadeUp} className="bg-industrial-steel/50 border border-industrial-zinc p-6 card-hover"><p.icon className="h-8 w-8 text-industrial-orange mb-4" /><h3 className="font-heading text-lg text-white mb-2">{p.title}</h3><p className="font-body text-sm text-industrial-smoke">{p.desc}</p></motion.div>)}
             </div>
@@ -388,7 +388,7 @@ export const HomePage = () => {
                 <motion.div variants={fadeUp} className="flex items-center gap-3 mb-4"><GraduationCap className="h-6 w-6 text-industrial-orange" /><p className="label-text">Academic Access</p></motion.div>
                 <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-8">FOR PROFESSORS<br /><span className="text-industrial-orange">& STUDENTS</span></motion.h2>
                 <motion.div variants={fadeUp} className="space-y-6 font-body text-industrial-smoke">
-                  <div className="bg-industrial-obsidian border border-industrial-zinc p-6"><p className="text-white mb-2">Professors can be sponsored to audit the course</p><p className="text-sm">Students accepted even without immediate buying power</p></div>
+                  <div className="bg-industrial-obsidian border border-industrial-zinc p-6"><p className="text-white mb-2">professors can be partially sponsored to audit this program</p><p className="text-sm">Students accepted even without immediate buying power provided that they demonstrate long term interest</p></div>
                   <p className="text-industrial-orange">TNTX complements theory with operational reality.</p>
                 </motion.div>
               </div>
