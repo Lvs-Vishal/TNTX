@@ -147,8 +147,8 @@ export const HomePage = () => {
     { q: "What are the eligibility criteria?", a: "Fashion brand founders, textile business heirs, sourcing professionals, and professors. Genuine intent required." },
     { q: "How competitive is admission?", a: "15 participants per cohort. Selection based on fit, not just ability to pay." },
     { q: "Is prior experience required?", a: "No. Students and early-career professionals accepted. What matters is genuine interest." },
-    { q: "What's included?", a: <span>Visa Assistance, Executive Accommodation, Meals & Refreshments, Local Transfers via Private SUV, Mill Factory Floor Visits, Direct meetings with Owners.<br /><span className="block mt-2 font-black text-red-500 animate-pulse uppercase tracking-wider">International Flights not included</span></span> },
-    { q: "Can professors get sponsored?", a: "Yes. Professors can be sponsored to audit the course. Contact us directly." },
+    { q: "What's included?", a: <span>Visa Assistance, Executive Accommodation, Meals & Refreshments, Local Transfers via Private SUV, Mill Factory Floor Visits, Direct meetings with Owners.<br /><span className="block mt-2 font-bold text-white">International Flights not included</span></span> },
+
   ];
 
   return (
@@ -388,7 +388,7 @@ export const HomePage = () => {
                 <motion.div variants={fadeUp} className="flex items-center gap-3 mb-4"><GraduationCap className="h-6 w-6 text-industrial-orange" /><p className="label-text">Academic Access</p></motion.div>
                 <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-8">FOR PROFESSORS<br /><span className="text-industrial-orange">& STUDENTS</span></motion.h2>
                 <motion.div variants={fadeUp} className="space-y-6 font-body text-industrial-smoke">
-                  <div className="bg-industrial-obsidian border border-industrial-zinc p-6"><p className="text-white mb-2">professors can be partially sponsored to audit this program</p><p className="text-sm">Students accepted even without immediate buying power provided that they demonstrate long term interest</p></div>
+                  <div className="bg-industrial-obsidian border border-industrial-zinc p-6"><p className="text-white mb-2">Professors can be partially sponsored to audit this program, Contact us...</p><p className="text-sm">Students accepted even without immediate buying power provided that they demonstrate long term interest</p></div>
                   <p className="text-industrial-orange">TNTX complements theory with operational reality.</p>
                 </motion.div>
               </div>
@@ -431,7 +431,7 @@ export const HomePage = () => {
           <AnimatedSection>
             <motion.h2 variants={fadeUp} className="text-3xl font-heading text-white mb-12 text-center">APPLICATION <span className="text-industrial-orange">PROCESS</span></motion.h2>
             <motion.div variants={fadeUp} className="space-y-4 mb-12">
-              {[{ n: "01", t: "Short application form" }, { n: "02", t: "Screening call (fit > money)" }, { n: "03", t: "Confirmation + onboarding" }].map((s, i) => <div key={i} className="flex items-center gap-6 bg-industrial-steel border border-industrial-zinc p-6"><span className="stat-number text-3xl">{s.n}</span><span className="font-body text-white text-lg">{s.t}</span></div>)}
+              {[{ n: "01", t: "Short application form" }, { n: "02", t: "Screening call fit > money" }, { n: "03", t: "Confirmation + onboarding" }].map((s, i) => <div key={i} className="flex items-center gap-6 bg-industrial-steel border border-industrial-zinc p-6"><span className="stat-number text-3xl">{s.n}</span><span className="font-body text-white text-lg">{s.t}</span></div>)}
             </motion.div>
             <motion.div variants={fadeUp} className="text-center bg-industrial-steel border border-industrial-orange/30 p-8">
               <p className="font-heading text-white text-xl">Access is intentional.</p>
