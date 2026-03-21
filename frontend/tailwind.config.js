@@ -51,6 +51,7 @@ module.exports = {
           steel: "#18181b",
           zinc: "#27272a",
           smoke: "#a1a1aa",
+          linen: "#fafaf9",
         },
       },
       fontFamily: {

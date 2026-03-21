@@ -88,24 +88,64 @@
     text-wrap: balance;
   }
 
-  .grain-overlay {
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    right: -50%;
-    bottom: -50%;
-    width: 200%;
-    height: 200%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.03;
-    pointer-events: none;
-    z-index: 100;
-    animation: grain 8s steps(10) infinite;
-  }
+  /* grain canvas removed - using before pseudo-element on body instead */
 
   .gradient-mask {
     mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+
+  .animate-loom-drift {
+    animation: loom-drift 8s linear infinite;
+  }
+  @keyframes loom-drift {
+    from { transform: translate(0px, 0px); }
+    to   { transform: translate(-40px, -40px); }
+  }
+
+  .animate-ambient-drift-1 {
+    animation: ambient-drift-1 8s ease-in-out infinite alternate;
+  }
+  @keyframes ambient-drift-1 {
+    0%   { transform: translate(0, 0); }
+    33%  { transform: translate(20px, -15px); }
+    66%  { transform: translate(-15px, 20px); }
+    100% { transform: translate(5px, -5px); }
+  }
+
+  .animate-ambient-drift-2 {
+    animation: ambient-drift-2 12s ease-in-out infinite alternate;
+  }
+  @keyframes ambient-drift-2 {
+    0%   { transform: translate(0, 0); }
+    33%  { transform: translate(-25px, 15px); }
+    66%  { transform: translate(15px, -20px); }
+    100% { transform: translate(-5px, 5px); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+  @keyframes pulse-glow {
+    0% { text-shadow: 0 0 0px transparent; }
+    100% { text-shadow: 0 0 12px #D4A017; }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 0.6s ease-in-out forwards;
+  }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) skewX(12deg); }
+    100% { transform: translateX(200%) skewX(12deg); }
+  }
+
+  .animate-border-pulse {
+    animation: border-pulse 0.4s ease-out forwards;
+  }
+  @keyframes border-pulse {
+    0%   { border-color: #D4A017; color: #D4A017; }
+    50%  { border-color: #ffffff; color: #ffffff; }
+    100% { border-color: #D4A017; color: #D4A017; }
   }
 }
 
@@ -136,5 +176,238 @@
 @layer base {
   [data-debug-wrapper="true"] {
     display: contents !important;
+  }
+}
+
+/* ========================================================
+   FULL PERFORMANCE REWRITE - CSS ANIMATIONS
+   ======================================================== */
+
+/* STATIC SVG NOISE (Replaces Canvas) */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.035;
+  filter: url(#grain);
+  background: transparent;
+}
+
+/* THREAD LINES (Replaces Canvas Particles) */
+@keyframes threadFloat {
+  0%   { translate: 0px 0px; }
+  33%  { translate: 12px 8px; }
+  66%  { translate: -6px 14px; }
+  100% { translate: 0px 0px; }
+}
+
+/* REVEAL ON SCROLL (Replaces Framer Motion) */
+.reveal-block {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-block.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-stagger.is-visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0ms; }
+.reveal-stagger.is-visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 100ms; }
+.reveal-stagger.is-visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 200ms; }
+.reveal-stagger.is-visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 300ms; }
+.reveal-stagger.is-visible > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 400ms; }
+.reveal-stagger.is-visible > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 500ms; }
+
+/* VALUE CHAIN ANIMATION */
+.chain-wrapper .chain-node {
+  opacity: 0;
+  transform: translateY(16px) scale(0.95);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.chain-wrapper .chain-arrow {
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.chain-wrapper .chain-line-fill {
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.chain-wrapper .chain-arrowhead {
+  color: rgba(113, 113, 122, 1);
+  transition: color 0.3s ease;
+}
+
+/* Staggered reveal per chain item (each item = node + arrow pair) */
+.chain-wrapper.is-visible > *:nth-child(1) .chain-node { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0ms; }
+.chain-wrapper.is-visible > *:nth-child(1) .chain-arrow { opacity: 1; transition-delay: 150ms; }
+.chain-wrapper.is-visible > *:nth-child(1) .chain-line-fill { transform: scaleX(1); transition-delay: 200ms; }
+
+.chain-wrapper.is-visible > *:nth-child(2) .chain-node { opacity: 1; transform: translateY(0) scale(1); transition-delay: 200ms; }
+.chain-wrapper.is-visible > *:nth-child(2) .chain-arrow { opacity: 1; transition-delay: 350ms; }
+.chain-wrapper.is-visible > *:nth-child(2) .chain-line-fill { transform: scaleX(1); transition-delay: 400ms; }
+
+.chain-wrapper.is-visible > *:nth-child(3) .chain-node { opacity: 1; transform: translateY(0) scale(1); transition-delay: 400ms; }
+.chain-wrapper.is-visible > *:nth-child(3) .chain-arrow { opacity: 1; transition-delay: 550ms; }
+.chain-wrapper.is-visible > *:nth-child(3) .chain-line-fill { transform: scaleX(1); transition-delay: 600ms; }
+
+.chain-wrapper.is-visible > *:nth-child(4) .chain-node { opacity: 1; transform: translateY(0) scale(1); transition-delay: 600ms; }
+.chain-wrapper.is-visible > *:nth-child(4) .chain-arrow { opacity: 1; transition-delay: 750ms; }
+.chain-wrapper.is-visible > *:nth-child(4) .chain-line-fill { transform: scaleX(1); transition-delay: 800ms; }
+
+.chain-wrapper.is-visible > *:nth-child(5) .chain-node { opacity: 1; transform: translateY(0) scale(1); transition-delay: 800ms; }
+.chain-wrapper.is-visible > *:nth-child(5) .chain-arrow { opacity: 1; transition-delay: 950ms; }
+.chain-wrapper.is-visible > *:nth-child(5) .chain-line-fill { transform: scaleX(1); transition-delay: 1000ms; }
+
+.chain-wrapper.is-visible > *:nth-child(6) .chain-node { opacity: 1; transform: translateY(0) scale(1); transition-delay: 1000ms; }
+
+/* Arrowheads turn orange after chain reveals */
+.chain-wrapper.is-visible .chain-arrowhead { color: #D4A017; }
+
+/* COUNTDOWN FLIP (Replaces pulse glow) */
+.digit-flip {
+  animation: flipIn 0.3s ease forwards;
+}
+@keyframes flipIn {
+  from { transform: translateY(-6px); opacity: 0.4; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* AMBIENT GLOWS (Replaces Framer Motion) */
+.ambient-glow-left {
+  position: fixed;
+  bottom: -200px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212, 160, 23, 0.07) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  animation: ambientDrift 14s ease-in-out infinite alternate;
+}
+
+/* TUBELIGHT NAVBAR GLOW */
+.tubelight-glow {
+  animation: tubelightAppear 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes tubelightAppear {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+/* Subtle breathing pulse on the light bar */
+.tubelight-glow > div:first-child {
+  animation: tubelightPulse 2s ease-in-out infinite alternate;
+}
+@keyframes tubelightPulse {
+  from { opacity: 0.85; }
+  to   { opacity: 1; }
+}
+
+.ambient-glow-right {
+  position: fixed;
+  top: -200px;
+  right: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(160, 82, 45, 0.06) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  animation: ambientDrift 18s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes ambientDrift {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(20px, 15px); }
+}
+
+/* SPINNING LOOM SVG */
+.loom-wheel {
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 380px;
+  height: 380px;
+  opacity: 0.035;
+  pointer-events: none;
+  animation: slowSpin 70s linear infinite;
+}
+@keyframes slowSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* NAV SCROLLED BACKGROUND */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  background: transparent;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+  border-bottom: 1px solid transparent;
+}
+.navbar--scrolled {
+  background: rgba(14, 13, 11, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom-color: rgba(212, 160, 23, 0.18);
+}
+
+/* BUTTON HOVER SWEEP (Replaces Framer Motion MagneticButton) */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0s;
+}
+.btn-primary:hover::after {
+  transform: translateX(200%);
+  transition: transform 0.5s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(212, 160, 23, 0.25);
+}
+
+/* LIGHTWEIGHT PAGE TRANSITION */
+.page-enter {
+  animation: pageFadeIn 0.4s ease forwards;
+}
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* SPLIT TEXT REVEAL (word-by-word hero headline) */
+@keyframes splitReveal {
+  from { opacity: 0; transform: translateY(40px); filter: blur(4px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0px); }
+}
+
+/* HORIZONTAL MARQUEE (problem section background text) */
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* MOBILE: disable decorative background animations */
+@media (max-width: 767px) {
+  .ambient-glow-left,
+  .ambient-glow-right,
+  .loom-wheel {
+    display: none !important;
   }
 }

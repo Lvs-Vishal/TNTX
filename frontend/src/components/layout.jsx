@@ -1,95 +1,79 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Home, User, MessageSquare, FileText, Send, Menu } from "lucide-react";
+import { NavBar } from "@/components/ui/tubelight-navbar";
 
 export const Navigation = () => {
-  return (
-    <nav
-      data-testid="navigation"
-      className="fixed top-0 left-0 right-0 z-50 nav-glass border-b border-industrial-zinc"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo - Aligned to be centered vertically always */}
-          <Link
-            to="/"
-            className="font-heading text-white text-lg tracking-wider hover:text-industrial-orange transition-colors flex items-center h-full leading-none"
-          >
-            TNTX
-          </Link>
+  const [scrolled, setScrolled] = useState(false);
+  const sentinelRef = useRef(null);
+  const location = useLocation();
 
-          {/* Desktop Navigation */}
-          <div className="hidden sm:flex items-center gap-6">
-            <Link to="/about" className="font-body text-industrial-smoke hover:text-white text-sm transition-colors">
-              About
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setScrolled(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, []);
+
+  const navItems = [
+    { name: 'Home', url: '/', icon: Home },
+    { name: 'About', url: '/about', icon: User },
+    { name: 'Contact', url: '/contact', icon: MessageSquare },
+    { name: 'Brochure', url: '#', icon: FileText, external: true }
+  ];
+
+  const APPLY_URL = "https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y";
+
+  return (
+    <>
+      <div ref={sentinelRef} style={{ position: 'absolute', top: 0, height: 1, width: '100%', pointerEvents: 'none' }} />
+
+      <nav
+        data-testid="navigation"
+        className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <Link
+              to="/"
+              className="font-heading text-white text-lg tracking-wider hover:text-industrial-orange transition-colors flex items-center h-full leading-none"
+            >
+              TNTX
             </Link>
-            <Link to="/contact" className="font-body text-industrial-smoke hover:text-white text-sm transition-colors">
-              Contact
-            </Link>
+
+            {/* Tubelight Navbar pill */}
+            <NavBar items={navItems} />
+
+            {/* Apply Now Button - Always visible, visually distinct */}
             <div className="flex items-center gap-4">
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a href={APPLY_URL} target="_blank" rel="noopener noreferrer">
                 <Button
-                  data-testid="nav-brochure-btn"
-                  size="sm"
-                  variant="outline"
-                  className="border-industrial-orange text-industrial-orange hover:bg-industrial-orange hover:text-white font-heading uppercase tracking-widest text-xs px-4 rounded-none"
-                >
-                  Brochure
-                </Button>
-              </a>
-              <a href="https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y" target="_blank" rel="noopener noreferrer">
-                <Button
-                  data-testid="nav-apply-btn"
-                  size="sm"
-                  className="bg-industrial-orange hover:bg-industrial-orange/90 text-white font-heading uppercase tracking-widest text-xs px-4 rounded-none"
+                  className="bg-industrial-orange hover:bg-industrial-orange/90 text-white font-bold uppercase tracking-widest text-[10px] sm:text-xs px-3 sm:px-6 py-2 rounded-full transition-all duration-300 shadow-lg"
                 >
                   Apply Now
                 </Button>
               </a>
+
+              {/* Mobile menu logic kept for any extra things, but NavBar handles core nav */}
+              <div className="sm:hidden flex items-center">
+                <div className="hidden">
+                  <Sheet>
+                    {/* ... */}
+                  </Sheet>
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* Mobile Navigation */}
-          <div className="sm:hidden flex items-center">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:text-industrial-orange">
-                  <Menu className="h-6 w-6" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="bg-industrial-obsidian border-l border-industrial-zinc w-[300px] sm:w-[400px]">
-                <nav className="flex flex-col gap-6 mt-10">
-                  <Link to="/about" className="font-heading text-xl text-white hover:text-industrial-orange transition-colors">
-                    About
-                  </Link>
-                  <Link to="/contact" className="font-heading text-xl text-white hover:text-industrial-orange transition-colors">
-                    Contact
-                  </Link>
-                  <div className="flex flex-col gap-4">
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      <Button
-                        variant="outline"
-                        className="w-full border-industrial-orange text-industrial-orange hover:bg-industrial-orange hover:text-white font-heading uppercase tracking-widest rounded-none"
-                      >
-                        Brochure
-                      </Button>
-                    </a>
-                    <a href="https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y" target="_blank" rel="noopener noreferrer">
-                      <Button
-                        className="w-full bg-industrial-orange hover:bg-industrial-orange/90 text-white font-heading uppercase tracking-widest rounded-none"
-                      >
-                        Apply Now
-                      </Button>
-                    </a>
-                  </div>
-                </nav>
-              </SheetContent>
-            </Sheet>
-          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 
@@ -116,9 +100,9 @@ export const Footer = () => {
             <Link to="/contact" className="font-body text-industrial-smoke hover:text-white text-sm transition-colors">
               Contact
             </Link>
-            <Link to="/apply" className="font-body text-industrial-smoke hover:text-white text-sm transition-colors">
+            <a href="https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y" target="_blank" rel="noopener noreferrer" className="font-body text-industrial-smoke hover:text-white text-sm transition-colors">
               Apply
-            </Link>
+            </a>
           </div>
           <p className="font-body text-industrial-smoke text-sm">
             © {new Date().getFullYear()} TNTX
