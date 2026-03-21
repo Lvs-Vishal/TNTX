@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView, useAnimation, useMotionValue, useTransform, animate } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -218,19 +218,31 @@ export const HomePage = () => {
               transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
               className="mb-16"
             >
-              <a href="https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y" target="_blank" rel="noopener noreferrer">
-                <Button
-                  data-testid="hero-apply-btn"
-                  size="lg"
-                  className="bg-industrial-orange hover:bg-orange-600 text-white font-heading uppercase tracking-widest px-12 py-8 text-lg rounded-none shadow-2xl hover:shadow-industrial-orange/50 transition-all duration-300 hover:scale-105 relative overflow-hidden group"
-                >
-                  <span className="relative z-10 flex items-center">
-                    Apply for the Intensive
-                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </Button>
-              </a>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y" target="_blank" rel="noopener noreferrer">
+                  <Button
+                    data-testid="hero-apply-btn"
+                    size="lg"
+                    className="bg-industrial-orange hover:bg-orange-600 text-white font-heading uppercase tracking-widest px-12 py-8 text-lg rounded-none shadow-2xl hover:shadow-industrial-orange/50 transition-all duration-300 hover:scale-105 relative overflow-hidden group w-full sm:w-auto"
+                  >
+                    <span className="relative z-10 flex items-center">
+                      Apply for the Intensive
+                      <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </Button>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <Button
+                    data-testid="hero-brochure-btn"
+                    size="lg"
+                    variant="outline"
+                    className="border-industrial-orange text-industrial-orange hover:bg-industrial-orange hover:text-white font-heading uppercase tracking-widest px-12 py-8 text-lg rounded-none shadow-2xl transition-all duration-300 hover:scale-105 relative overflow-hidden w-full sm:w-auto"
+                  >
+                    Download brochure
+                  </Button>
+                </a>
+              </div>
             </motion.div>
 
             {/* Stats Grid */}
@@ -254,7 +266,7 @@ export const HomePage = () => {
 
               <div className="group bg-black/40 backdrop-blur-md border border-white/10 hover:border-industrial-orange/50 p-6 rounded-lg transition-all duration-300 hover:bg-black/60">
                 <MapPin className="h-8 w-8 text-industrial-orange mx-auto mb-3" />
-                <div className="text-lg sm:text-xl font-heading font-bold text-white mb-1">CBE</div>
+                <div className="text-lg sm:text-xl font-heading font-bold text-white mb-1">CJB</div>
                 <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider">Location</div>
               </div>
             </motion.div>
@@ -273,7 +285,7 @@ export const HomePage = () => {
                 <AlertCircle className="h-4 w-4" />
                 <span className="label-text text-red-500 tracking-widest text-sm">APPLICATIONS CLOSE</span>
               </div>
-              <p className="font-heading text-white text-3xl sm:text-4xl tracking-tight">March 31st, 2025</p>
+              <p className="font-heading text-white text-3xl sm:text-4xl tracking-tight">April 30th, 2026</p>
             </div>
           </div>
         </div>
@@ -435,7 +447,7 @@ export const HomePage = () => {
             </motion.div>
             <motion.div variants={fadeUp} className="text-center bg-industrial-steel border border-industrial-orange/30 p-8">
               <p className="font-heading text-white text-xl">Access is intentional.</p>
-              <p className="text-red-500 font-body text-sm mt-4 flex items-center justify-center gap-2"><AlertCircle className="h-4 w-4" />Applications close March 31st, 2025</p>
+              <p className="text-red-500 font-body text-sm mt-4 flex items-center justify-center gap-2"><AlertCircle className="h-4 w-4" />Applications close April 30th, 2026</p>
             </motion.div>
           </AnimatedSection>
         </div>

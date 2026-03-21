@@ -27,15 +27,27 @@ export const Navigation = () => {
             <Link to="/contact" className="font-body text-industrial-smoke hover:text-white text-sm transition-colors">
               Contact
             </Link>
-            <a href="https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y" target="_blank" rel="noopener noreferrer">
-              <Button
-                data-testid="nav-apply-btn"
-                size="sm"
-                className="bg-industrial-orange hover:bg-industrial-orange/90 text-white font-heading uppercase tracking-widest text-xs px-4 rounded-none"
-              >
-                Apply Now
-              </Button>
-            </a>
+            <div className="flex items-center gap-4">
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                <Button
+                  data-testid="nav-brochure-btn"
+                  size="sm"
+                  variant="outline"
+                  className="border-industrial-orange text-industrial-orange hover:bg-industrial-orange hover:text-white font-heading uppercase tracking-widest text-xs px-4 rounded-none"
+                >
+                  Brochure
+                </Button>
+              </a>
+              <a href="https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y" target="_blank" rel="noopener noreferrer">
+                <Button
+                  data-testid="nav-apply-btn"
+                  size="sm"
+                  className="bg-industrial-orange hover:bg-industrial-orange/90 text-white font-heading uppercase tracking-widest text-xs px-4 rounded-none"
+                >
+                  Apply Now
+                </Button>
+              </a>
+            </div>
           </div>
 
           {/* Mobile Navigation */}
@@ -54,13 +66,23 @@ export const Navigation = () => {
                   <Link to="/contact" className="font-heading text-xl text-white hover:text-industrial-orange transition-colors">
                     Contact
                   </Link>
-                  <a href="https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y" target="_blank" rel="noopener noreferrer">
-                    <Button
-                      className="w-full bg-industrial-orange hover:bg-industrial-orange/90 text-white font-heading uppercase tracking-widest"
-                    >
-                      Apply Now
-                    </Button>
-                  </a>
+                  <div className="flex flex-col gap-4">
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                      <Button
+                        variant="outline"
+                        className="w-full border-industrial-orange text-industrial-orange hover:bg-industrial-orange hover:text-white font-heading uppercase tracking-widest rounded-none"
+                      >
+                        Brochure
+                      </Button>
+                    </a>
+                    <a href="https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y" target="_blank" rel="noopener noreferrer">
+                      <Button
+                        className="w-full bg-industrial-orange hover:bg-industrial-orange/90 text-white font-heading uppercase tracking-widest rounded-none"
+                      >
+                        Apply Now
+                      </Button>
+                    </a>
+                  </div>
                 </nav>
               </SheetContent>
             </Sheet>
