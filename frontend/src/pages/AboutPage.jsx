@@ -14,7 +14,7 @@ const DramaticBulletRow = ({ children }) => {
       className="reveal-block relative pl-6 py-2 border-l-4 border-transparent"
       style={{ transform: "translateX(60px)", opacity: 0, transition: "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }}
     >
-      <style>{`.reveal-block.is-visible.bullet-row { transform: translateX(0) !important; opacity: 1 !important; border-left-color: #D4A017; }`}</style>
+      <style>{`.reveal-block.is-visible.bullet-row { transform: translateX(0) !important; opacity: 1 !important; border-left-color: #C8500A; }`}</style>
       <p className="font-body text-white text-lg leading-relaxed">{children}</p>
     </div>
   );

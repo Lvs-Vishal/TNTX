@@ -10,7 +10,7 @@
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 24 95% 53%;
+    --primary: 22 90% 41%;
     --primary-foreground: 0 0% 100%;
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
@@ -22,7 +22,7 @@
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 24 95% 53%;
+    --ring: 22 90% 41%;
     --radius: 0.125rem;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
@@ -38,7 +38,7 @@
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 98%;
-    --primary: 24 95% 53%;
+    --primary: 22 90% 41%;
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
@@ -50,7 +50,7 @@
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
-    --ring: 24 95% 53%;
+    --ring: 22 90% 41%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -70,15 +70,14 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Space Mono", monospace;
+    font-family: "Inter", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Oswald", sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: -0.02em;
   }
 }
@@ -128,7 +127,7 @@
   }
   @keyframes pulse-glow {
     0% { text-shadow: 0 0 0px transparent; }
-    100% { text-shadow: 0 0 12px #D4A017; }
+    100% { text-shadow: 0 0 12px #C8500A; }
   }
 
   .animate-shimmer {
@@ -143,9 +142,9 @@
     animation: border-pulse 0.4s ease-out forwards;
   }
   @keyframes border-pulse {
-    0%   { border-color: #D4A017; color: #D4A017; }
+    0%   { border-color: #C8500A; color: #C8500A; }
     50%  { border-color: #ffffff; color: #ffffff; }
-    100% { border-color: #D4A017; color: #D4A017; }
+    100% { border-color: #C8500A; color: #C8500A; }
   }
 }
 
@@ -155,11 +154,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #1a1a1a;
   border-radius: 4px;
 }
 
@@ -169,7 +168,7 @@
 
 /* Selection styling */
 ::selection {
-  background: #f97316;
+  background: #C8500A;
   color: #ffffff;
 }
 
@@ -272,7 +271,7 @@ body::after {
 .chain-wrapper.is-visible > *:nth-child(6) .chain-node { opacity: 1; transform: translateY(0) scale(1); transition-delay: 1000ms; }
 
 /* Arrowheads turn orange after chain reveals */
-.chain-wrapper.is-visible .chain-arrowhead { color: #D4A017; }
+.chain-wrapper.is-visible .chain-arrowhead { color: #C8500A; }
 
 /* COUNTDOWN FLIP (Replaces pulse glow) */
 .digit-flip {
@@ -290,7 +289,7 @@ body::after {
   left: -200px;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(212, 160, 23, 0.07) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(200, 80, 10, 0.07) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
   animation: ambientDrift 14s ease-in-out infinite alternate;
@@ -319,7 +318,7 @@ body::after {
   right: -200px;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(160, 82, 45, 0.06) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(200, 80, 10, 0.06) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
   animation: ambientDrift 18s ease-in-out infinite alternate-reverse;
@@ -354,9 +353,9 @@ body::after {
   border-bottom: 1px solid transparent;
 }
 .navbar--scrolled {
-  background: rgba(14, 13, 11, 0.88);
+  background: rgba(0, 0, 0, 0.88);
   backdrop-filter: blur(12px);
-  border-bottom-color: rgba(212, 160, 23, 0.18);
+  border-bottom-color: rgba(200, 80, 10, 0.18);
 }
 
 /* BUTTON HOVER SWEEP (Replaces Framer Motion MagneticButton) */
@@ -379,7 +378,7 @@ body::after {
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(212, 160, 23, 0.25);
+  box-shadow: 0 8px 24px rgba(200, 80, 10, 0.25);
 }
 
 /* LIGHTWEIGHT PAGE TRANSITION */

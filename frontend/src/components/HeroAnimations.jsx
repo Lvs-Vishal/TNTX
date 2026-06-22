@@ -15,7 +15,7 @@ export const ThreadLines = () => {
       duration: 12 + (i * 3.7) % 16,
       delay: -(i * 2.1),
       opacity: 0.06 + (i % 3) * 0.03,
-      color: i % 2 === 0 ? '#D4A017' : '#A0522D'
+      color: i % 2 === 0 ? '#C8500A' : '#a01f0f'
     }));
   }, []);
 
@@ -64,10 +64,10 @@ export const LoomWheel = () => {
 
   return (
     <svg viewBox="0 0 380 380" className="loom-wheel" aria-hidden="true">
-      <circle cx="190" cy="190" r="179" fill="none" stroke="#D4A017" strokeWidth="0.8" />
-      <circle cx="190" cy="190" r="20" fill="none" stroke="#D4A017" strokeWidth="0.8" />
+      <circle cx="190" cy="190" r="179" fill="none" stroke="#C8500A" strokeWidth="0.8" />
+      <circle cx="190" cy="190" r="20" fill="none" stroke="#C8500A" strokeWidth="0.8" />
       {spokes.map((s, i) => (
-        <line key={i} x1="190" y1="190" x2={s.x2} y2={s.y2} stroke="#D4A017" strokeWidth="0.5" />
+        <line key={i} x1="190" y1="190" x2={s.x2} y2={s.y2} stroke="#C8500A" strokeWidth="0.5" />
       ))}
     </svg>
   );

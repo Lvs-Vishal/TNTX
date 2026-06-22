@@ -13,11 +13,11 @@ export const BackgroundLayers = () => {
             patternUnits="userSpaceOnUse"
           >
             {/* Horizontal ochre */}
-            <line x1="0" y1="20" x2="40" y2="20" stroke="#D4A017" strokeWidth="0.5" />
+            <line x1="0" y1="20" x2="40" y2="20" stroke="#C8500A" strokeWidth="0.5" />
             {/* Vertical rust */}
             <line x1="20" y1="0" x2="20" y2="40" stroke="#A0522D" strokeWidth="0.5" />
             {/* Intersection circle */}
-            <circle cx="20" cy="20" r="1.5" fill="#D4A017" />
+            <circle cx="20" cy="20" r="1.5" fill="#C8500A" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#loom-pattern)" />
