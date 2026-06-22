@@ -2,11 +2,11 @@
 .hero-gradient {
   background: linear-gradient(
     to top,
-    rgba(9, 9, 11, 1) 0%,
-    rgba(9, 9, 11, 0.95) 20%,
-    rgba(9, 9, 11, 0.7) 50%,
-    rgba(9, 9, 11, 0.4) 80%,
-    rgba(9, 9, 11, 0.2) 100%
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.95) 20%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.4) 80%,
+    rgba(0, 0, 0, 0.2) 100%
   );
 }
 
@@ -22,7 +22,7 @@
 
 /* Sticky navigation glassmorphism */
 .nav-glass {
-  background: rgba(9, 9, 11, 0.8);
+  background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -33,7 +33,7 @@
 }
 
 .card-hover:hover {
-  border-color: rgba(249, 115, 22, 0.5);
+  border-color: rgba(200, 80, 10, 0.5);
   transform: translateY(-2px);
 }
 
@@ -112,14 +112,14 @@
   background: linear-gradient(
     to right,
     transparent,
-    rgba(249, 115, 22, 0.3),
+    rgba(200, 80, 10, 0.3),
     transparent
   );
 }
 
 /* Quote marks styling */
 .quote-mark {
-  font-family: "Oswald", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: 6rem;
   line-height: 1;
   color: #C8500A;
@@ -128,7 +128,7 @@
 
 /* Number styling for stats */
 .stat-number {
-  font-family: "Oswald", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 700;
   font-size: clamp(2.5rem, 5vw, 4rem);
   color: #C8500A;
@@ -137,7 +137,7 @@
 
 /* Label styling */
 .label-text {
-  font-family: "Barlow Condensed", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;

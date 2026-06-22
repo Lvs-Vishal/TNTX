@@ -15,7 +15,7 @@ export const ThreadLines = () => {
       duration: 12 + (i * 3.7) % 16,
       delay: -(i * 2.1),
       opacity: 0.06 + (i % 3) * 0.03,
-      color: i % 2 === 0 ? '#C8500A' : '#a01f0f'
+      color: i % 2 === 0 ? '#C8500A' : '#8a3808'
     }));
   }, []);
 

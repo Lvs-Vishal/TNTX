@@ -410,3 +410,43 @@ body::after {
     display: none !important;
   }
 }
+
+/* ══════════════════════════════════════════════════
+   GLOBAL COLOR OVERRIDE — #C8500A BURNT ORANGE
+   This block MUST remain at the very bottom of the file.
+   ══════════════════════════════════════════════════ */
+
+:root {
+  --accent: #C8500A !important;
+  --primary: 22 90% 41% !important;
+  --brand-color: #C8500A !important;
+  --orange: #C8500A !important;
+  --highlight: #C8500A !important;
+}
+
+/* Force accent color on all Lucide / SVG icons */
+.text-industrial-orange {
+  color: #C8500A !important;
+}
+
+/* Stat numbers */
+.stat-number {
+  color: #C8500A !important;
+}
+
+/* Icon wrappers — transparent backgrounds */
+[class*="icon"] {
+  background-color: transparent !important;
+}
+
+/* SVG icons: use stroke, not fill (Lucide icons are stroke-based) */
+svg.text-industrial-orange,
+svg.text-industrial-orange path,
+svg.text-industrial-orange circle,
+svg.text-industrial-orange line,
+svg.text-industrial-orange polyline,
+svg.text-industrial-orange rect {
+  stroke: #C8500A !important;
+  color: #C8500A !important;
+  background: transparent !important;
+}
