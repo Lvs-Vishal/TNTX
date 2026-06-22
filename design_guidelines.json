@@ -1,0 +1,115 @@
+{
+  "identity": {
+    "persona": "E1: The Anti-AI Designer",
+    "mission": "Create a raw, industrial, and high-conversion landing page for Tamilnadu Textile Exchange that feels like a verified insider tool, not a tourist brochure.",
+    "principles": [
+      "Fusion over Imitation: Mix industrial brutalism with high-end fashion editorial.",
+      "Emotion First: The user should feel the weight, heat, and scale of the textile mills.",
+      "Content is King: Every section must drive the narrative of 'Direct Access' and 'No Middlemen'.",
+      "Contrast: High contrast between the dark machinery and the bright 'Safety Orange' CTAs."
+    ]
+  },
+  "theme": {
+    "mode": "dark",
+    "aesthetic": "Industrial Brutalism",
+    "emotional_tone": "Serious, Exclusive, Raw, Technical",
+    "visual_mood": "Machinery, Steel, Cotton Dust, Dark Warehouses"
+  },
+  "colors": {
+    "palette": {
+      "background": "#09090b",
+      "surface": "#18181b",
+      "surface_highlight": "#27272a",
+      "primary": "#f97316",
+      "primary_foreground": "#ffffff",
+      "secondary": "#e4e4e7",
+      "secondary_foreground": "#18181b",
+      "text_main": "#ffffff",
+      "text_muted": "#a1a1aa",
+      "border": "#27272a",
+      "accent_warning": "#eab308"
+    },
+    "usage": {
+      "background": "Main page background. Add a subtle noise texture overlay.",
+      "primary": "Use ONLY for the 'Apply Now' CTAs. It represents 'Industrial Safety Orange'.",
+      "text_main": "Headings and key value propositions.",
+      "text_muted": "Body text and secondary details.",
+      "borders": "Use 1px borders on cards to mimic blueprints or technical schematics."
+    }
+  },
+  "typography": {
+    "font_family": {
+      "headings": "Oswald, sans-serif",
+      "body": "Space Mono, monospace",
+      "accent": "Barlow Condensed, sans-serif"
+    },
+    "rules": {
+      "headings": "Uppercase, tight tracking (-0.02em), heavy weight (700/900).",
+      "body": "Readable size (16px+), relaxed leading (1.6).",
+      "labels": "Uppercase, wide tracking (0.1em), small size (12px)."
+    },
+    "google_fonts_import": "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Oswald:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+  },
+  "layout": {
+    "grid_system": "Bento Grid",
+    "spacing": "Generous. Use p-12, p-24 for section padding. Gap-8 for grids.",
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "strategies": {
+      "hero": "Full-screen immersive image with heavy gradient overlay (bottom-up). Text bottom-aligned.",
+      "program_snapshot": "Bento grid layout. Mix square and tall rectangular cards.",
+      "text_heavy": "Narrow columns (max-w-2xl) for readability, offset by large negative space."
+    }
+  },
+  "components": {
+    "buttons": {
+      "style": "Sharp edges (rounded-none) or very slight rounding (rounded-sm).",
+      "hover": "Slide-up effect or color inversion. High contrast.",
+      "cta_primary": "bg-primary text-primary-foreground hover:bg-primary/90 uppercase tracking-widest font-bold"
+    },
+    "cards": {
+      "style": "bg-surface border border-border/50 hover:border-primary/50 transition-colors duration-300.",
+      "content": "Minimal padding, technical layout."
+    },
+    "images": {
+      "treatment": "Grayscale or desaturated with high contrast. Add a 'grain' overlay using CSS."
+    },
+    "navigation": {
+      "style": "Minimal. Sticky glassmorphism header with blur."
+    }
+  },
+  "assets": {
+    "images": {
+      "hero_background": "https://images.unsplash.com/photo-1769051782031-ef8c6dce8795?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "raw_material": "https://images.unsplash.com/photo-1718117075248-3d3c3cd65264?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "process_detail": "https://images.unsplash.com/photo-1669228488520-e47813a401f8?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "texture_overlay": "https://images.unsplash.com/photo-1532526674046-5b3f6d7d2ab1?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "human_element": "https://images.unsplash.com/photo-1592924937536-05248c645785?crop=entropy&cs=srgb&fm=jpg&q=85"
+    },
+    "icons": "Use Lucide-React icons. Style: Thin stroke (1.5px), sharp edges."
+  },
+  "libraries": {
+    "required": [
+      "framer-motion",
+      "lenis",
+      "clsx",
+      "tailwind-merge",
+      "lucide-react"
+    ],
+    "installation_command": "yarn add framer-motion lenis clsx tailwind-merge lucide-react"
+  },
+  "instructions_to_main_agent": [
+    "1. INSTALL DEPENDENCIES: Run the installation command immediately.",
+    "2. SETUP FONTS: Add the Google Fonts import to public/index.html or CSS.",
+    "3. CONFIGURE TAILWIND: Update tailwind.config.js with the custom colors and fonts.",
+    "4. IMPLEMENT SMOOTH SCROLL: Initialize Lenis in the root App component.",
+    "5. BUILD SECTIONS: Create separate components for Hero, TargetAudience, CorePromise, MillVisits, ProgramDetails, CTA.",
+    "6. APPLY TEXTURE: Create a fixed position div with the noise texture (using the texture_overlay image or CSS noise) set to low opacity and pointer-events-none.",
+    "7. ANIMATION: Use Framer Motion for scroll-triggered reveal animations (fade-up) on all text blocks and cards."
+  ],
+  "universal_guidelines": {
+    "anti_slop": "Avoid generic centered layouts. Use asymmetry. Use 2-3x more spacing than usual.",
+    "interaction": "Every button and card must have a hover state. No dead clicks.",
+    "accessibility": "Ensure text contrast is high (White on Dark Grey).",
+    "testing": "Add data-testid to all interactive elements."
+  }
+}
