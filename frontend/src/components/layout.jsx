@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Home, User, MessageSquare, FileText, Send, Menu } from "lucide-react";
 import { NavBar } from "@/components/ui/tubelight-navbar";
+import { StaggeredMenu } from "@/components/ui/StaggeredMenu";
 
 export const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -58,13 +59,25 @@ export const Navigation = () => {
                 </Button>
               </a>
 
-              {/* Mobile menu logic kept for any extra things, but NavBar handles core nav */}
+              {/* Mobile menu using StaggeredMenu */}
               <div className="sm:hidden flex items-center">
-                <div className="hidden">
-                  <Sheet>
-                    {/* ... */}
-                  </Sheet>
-                </div>
+                <StaggeredMenu
+                  position="right"
+                  items={navItems.map(item => ({
+                    label: item.name,
+                    ariaLabel: `Go to ${item.name}`,
+                    link: item.url
+                  }))}
+                  socialItems={[]}
+                  displaySocials={false}
+                  displayItemNumbering={true}
+                  menuButtonColor="#C8500A"
+                  openMenuButtonColor="#C8500A"
+                  changeMenuColorOnOpen={false}
+                  colors={['#1a1a1a', '#050505']}
+                  accentColor="#C8500A"
+                  logoUrl={null}
+                />
               </div>
             </div>
           </div>
@@ -72,7 +85,7 @@ export const Navigation = () => {
       </nav>
 
       {/* Tubelight Navbar pill moved outside to avoid backdrop-filter containing block context */}
-      <NavBar items={navItems} />
+      <NavBar items={navItems} className="hidden sm:block" />
     </>
   );
 };
