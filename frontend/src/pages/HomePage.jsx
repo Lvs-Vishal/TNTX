@@ -188,29 +188,31 @@ export const HomePage = () => {
             <div className="mb-16 relative z-10" style={{ opacity: 0, animation: 'pageFadeIn 0.8s ease 0.6s forwards' }}>
               <div className="flex flex-col items-center justify-center gap-4">
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-                  <a href={APPLY_URL} target="_blank" rel="noopener noreferrer" className="block w-full sm:w-auto">
-                    <Button
-                      data-testid="hero-apply-btn"
-                      size="lg"
-                      className="btn-primary bg-industrial-orange text-white font-bold font-heading uppercase tracking-widest px-12 py-8 text-lg rounded-none shadow-2xl w-full"
-                    >
+                  <Button
+                    asChild
+                    data-testid="hero-apply-btn"
+                    size="lg"
+                    className="btn-primary bg-industrial-orange text-white font-bold font-heading uppercase tracking-widest px-12 py-8 text-lg rounded-none shadow-2xl w-full sm:w-auto"
+                  >
+                    <a href={APPLY_URL} target="_blank" rel="noopener noreferrer">
                       <span className="relative z-10 flex items-center">
                         Apply for the Intensive
                         <ArrowRight strokeWidth={1.5} className="ml-3 h-6 w-6" />
                       </span>
-                    </Button>
-                  </a>
+                    </a>
+                  </Button>
 
-                  <a href="/TNTX_BROUCHURE.pdf" download="TNTX_BROUCHURE.pdf" target="_blank" rel="noopener noreferrer" className="block w-full sm:w-auto">
-                    <Button
-                      data-testid="hero-brochure-btn"
-                      size="lg"
-                      variant="outline"
-                      className="border-industrial-orange text-industrial-orange font-heading uppercase tracking-widest px-12 py-8 text-lg rounded-none shadow-2xl w-full hover:bg-industrial-orange hover:text-white transition-colors duration-300"
-                    >
+                  <Button
+                    asChild
+                    data-testid="hero-brochure-btn"
+                    size="lg"
+                    variant="outline"
+                    className="border-industrial-orange text-industrial-orange font-heading uppercase tracking-widest px-12 py-8 text-lg rounded-none shadow-2xl w-full sm:w-auto hover:bg-industrial-orange hover:text-white transition-colors duration-300"
+                  >
+                    <a href="/TNTX_BROUCHURE.pdf" download="TNTX_BROUCHURE.pdf" target="_blank" rel="noopener noreferrer">
                       Download brochure
-                    </Button>
-                  </a>
+                    </a>
+                  </Button>
                 </div>
                 {/* Sub-text requested in Fix 4B */}
                 <p className="text-[13px] text-industrial-smoke opacity-60 font-body">
