@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Home, User, MessageSquare, FileText, Send, Menu } from "lucide-react";
-import { NavBar } from "@/components/ui/tubelight-navbar";
+import Dock from "@/components/ui/Dock";
 
 export const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -71,8 +71,8 @@ export const Navigation = () => {
         </div>
       </nav>
 
-      {/* Tubelight Navbar pill moved outside to avoid backdrop-filter containing block context */}
-      <NavBar items={navItems} />
+      {/* Apple-style Dock replacing old tubelight pill */}
+      <Dock items={navItems} />
     </>
   );
 };
