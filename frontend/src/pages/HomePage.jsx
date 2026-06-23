@@ -261,7 +261,7 @@ export const HomePage = () => {
               >
                 <div className="p-6 rounded-lg transition-all duration-300 group-hover:bg-black/20 flex flex-col h-full justify-center">
                   <Calendar strokeWidth={1.5} className="h-8 w-8 text-industrial-orange mx-auto mb-3" />
-                  <div className="text-3xl sm:text-4xl font-heading font-bold text-white mb-1">9</div>
+                  <div className="text-3xl sm:text-4xl font-heading font-bold text-white mb-1">7</div>
                   <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider">Days</div>
                 </div>
               </BorderGlow>
@@ -376,7 +376,7 @@ export const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4">
           <RevealHeading className="mb-16 flex justify-center"><h2 className="text-3xl font-heading text-white text-center">PROGRAM <span className="text-industrial-orange">SNAPSHOT</span></h2></RevealHeading>
           <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {[{ v: "9", l: "Days", icon: Clock }, { v: "15", l: "Max Participants", icon: Users }, { v: "Coimbatore", l: "Location", icon: MapPin }, { v: "Lifetime", l: "Post-program Access", icon: Factory }].map((d, i) => (
+            {[{ v: "7", l: "Days", icon: Clock }, { v: "15", l: "Max Participants", icon: Users }, { v: "Coimbatore", l: "Location", icon: MapPin }, { v: "Lifetime", l: "Post-program Access", icon: Factory }].map((d, i) => (
               <StaggerCard key={i} className="bg-industrial-obsidian border border-industrial-zinc p-6 text-center">
                 <d.icon strokeWidth={1.5} className="h-6 w-6 text-industrial-orange mx-auto mb-4 relative z-20" />
                 <div className={`stat-number mb-2 relative z-20 ${d.v === "Coimbatore" ? "!text-3xl sm:!text-4xl" : ""}`}>{d.v}</div>
