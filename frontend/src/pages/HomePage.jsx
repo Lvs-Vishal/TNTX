@@ -8,6 +8,7 @@ import { ThreadLines, SplitTextReveal, LoomWheel, RevealSection } from "@/compon
 import { RevealHeading, StaggerContainer, StaggerCard, HorizontalMarquee, AnimatedValueChain, ParallaxTestimonials } from "@/components/ScrollAnimations";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import BorderGlow from "@/components/ui/BorderGlow";
+import LightRays from "@/components/ui/LightRays";
 
 // Cohort date - January 5, 2027
 const COHORT_START = new Date("2027-01-05T00:00:00");
@@ -149,6 +150,19 @@ export const HomePage = () => {
 
         {/* Decorative Elements */}
         <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 opacity-60">
+            <LightRays
+              raysOrigin="top-center"
+              raysColor="#ff9933"
+              raysSpeed={1.5}
+              lightSpread={0.8}
+              rayLength={1.2}
+              followMouse={true}
+              mouseInfluence={0.1}
+              noiseAmount={0.1}
+              distortion={0.05}
+            />
+          </div>
           <div className="absolute top-1/4 -left-20 w-96 h-96 bg-industrial-orange/5 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-industrial-orange/5 rounded-full blur-3xl" />
           <LoomWheel />
