@@ -11,10 +11,10 @@ const DramaticBulletRow = ({ children }) => {
   return (
     <div
       ref={ref}
-      className="reveal-block relative pl-6 py-2 border-l-4 border-transparent"
+      className="reveal-block bullet-row relative pl-6 py-2 border-l-4 border-transparent"
       style={{ transform: "translateX(60px)", opacity: 0, transition: "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }}
     >
-      <style>{`.reveal-block.is-visible.bullet-row { transform: translateX(0) !important; opacity: 1 !important; border-left-color: #C8500A; }`}</style>
+      <style>{`.reveal-block.is-visible.bullet-row { transform: translateX(0) !important; opacity: 1 !important; border-left-color: #C8500A !important; }`}</style>
       <p className="font-body text-white text-lg leading-relaxed">{children}</p>
     </div>
   );
@@ -98,7 +98,7 @@ export const AboutPage = () => {
   ];
 
   return (
-    <div className="pt-16">
+    <div className="pt-16 overflow-x-hidden">
       {/* Hero */}
       <section className="py-24 lg:py-32 bg-industrial-obsidian relative">
         <div className="absolute inset-0 opacity-10">
