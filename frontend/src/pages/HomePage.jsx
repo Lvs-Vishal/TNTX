@@ -207,7 +207,7 @@ export const HomePage = () => {
                     data-testid="hero-brochure-btn"
                     size="lg"
                     variant="outline"
-                    className="border-industrial-orange text-industrial-orange font-heading uppercase tracking-widest px-12 py-8 text-lg rounded-none shadow-2xl w-full sm:w-auto hover:bg-industrial-orange hover:text-white transition-colors duration-300"
+                    className="border-industrial-orange text-industrial-orange font-heading uppercase tracking-widest px-12 py-8 text-lg rounded-none shadow-2xl w-full sm:w-auto hover:bg-industrial-orange hover:text-white focus:bg-industrial-orange focus:text-white active:bg-industrial-orange active:text-white transition-colors duration-300"
                   >
                     <a href="/TNTX_BROUCHURE.pdf" download="TNTX_BROUCHURE.pdf" target="_blank" rel="noopener noreferrer">
                       Download brochure

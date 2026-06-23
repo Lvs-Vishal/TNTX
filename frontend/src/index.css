@@ -458,6 +458,20 @@ a.text-industrial-orange {
   border-color: #C8500A !important;
 }
 
+/* Allow white text to override orange when active/hovered */
+.hover\:text-white:hover {
+  color: #ffffff !important;
+}
+.active\:text-white:active {
+  color: #ffffff !important;
+}
+.focus\:text-white:focus {
+  color: #ffffff !important;
+}
+.text-white {
+  color: #ffffff !important;
+}
+
 /* Stat numbers */
 .stat-number {
   color: #C8500A !important;
