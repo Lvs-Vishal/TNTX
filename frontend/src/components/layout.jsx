@@ -48,9 +48,6 @@ export const Navigation = () => {
               TNTX
             </Link>
 
-            {/* Tubelight Navbar pill */}
-            <NavBar items={navItems} />
-
             {/* Apply Now Button - Always visible, visually distinct */}
             <div className="flex items-center gap-4">
               <a href={APPLY_URL} target="_blank" rel="noopener noreferrer">
@@ -73,6 +70,9 @@ export const Navigation = () => {
           </div>
         </div>
       </nav>
+
+      {/* Tubelight Navbar pill moved outside to avoid backdrop-filter containing block context */}
+      <NavBar items={navItems} />
     </>
   );
 };
