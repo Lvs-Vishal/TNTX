@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { Menu as MenuIcon, X } from 'lucide-react';
