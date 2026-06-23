@@ -33,7 +33,7 @@
 }
 
 .card-hover:hover {
-  border-color: rgba(200, 80, 10, 0.5);
+  border-color: rgba(232, 101, 26, 0.5);
   transform: translateY(-2px);
 }
 
@@ -112,7 +112,7 @@
   background: linear-gradient(
     to right,
     transparent,
-    rgba(200, 80, 10, 0.3),
+    rgba(232, 101, 26, 0.3),
     transparent
   );
 }

@@ -59,7 +59,7 @@ const RevealTableRow = ({ row }) => {
   return (
     <tr
       ref={ref}
-      className="reveal-block border-b border-industrial-zinc group hover:bg-[rgba(212,160,23,0.05)]"
+      className="reveal-block border-b border-industrial-zinc group hover:bg-[rgba(200,80,10,0.05)]"
     >
       <td className="py-4 px-4 font-body text-white align-top transition-colors group-hover:text-industrial-orange">{row.curriculum}</td>
       <td className="py-4 px-4 font-body text-industrial-smoke align-top">{row.reality}</td>

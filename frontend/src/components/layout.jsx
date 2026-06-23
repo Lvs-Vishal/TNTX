@@ -26,7 +26,7 @@ export const Navigation = () => {
     { name: 'Home', url: '/', icon: Home },
     { name: 'About', url: '/about', icon: User },
     { name: 'Contact', url: '/contact', icon: MessageSquare },
-    { name: 'Brochure', url: '#', icon: FileText, external: true }
+    { name: 'Brochure', url: '/TNTX_BROUCHURE.pdf', icon: FileText, external: true, download: true }
   ];
 
   const APPLY_URL = "https://forms.zohopublic.in/infotn1/form/TNTXImmersionApplication/formperma/zded7NgrSJ-7r1zRh1ZUYUSVhksII_Rb5Ienz6J8E7Y";

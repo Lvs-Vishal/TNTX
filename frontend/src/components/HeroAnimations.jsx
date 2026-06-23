@@ -76,13 +76,13 @@ export const LoomWheel = () => {
 // ==========================================
 // HERO HEADLINE SPLIT TEXT (Pure CSS, no Framer Motion)
 // ==========================================
-export const SplitTextReveal = ({ text, delay = 0, className = "" }) => {
+export const SplitTextReveal = ({ text, delay = 0, className = "", color }) => {
   const words = text.split(" ");
 
   return (
     <span
       className={className}
-      style={{ display: "inline-block" }}
+      style={{ display: "inline-block", color: color || "inherit" }}
     >
       {words.map((word, idx) => (
         <span
@@ -94,7 +94,8 @@ export const SplitTextReveal = ({ text, delay = 0, className = "" }) => {
             filter: "blur(4px)",
             animation: `splitReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards`,
             animationDelay: `${delay + idx * 0.12}s`,
-            marginRight: "0.25em"
+            marginRight: "0.25em",
+            color: color || "inherit"
           }}
         >
           {word}

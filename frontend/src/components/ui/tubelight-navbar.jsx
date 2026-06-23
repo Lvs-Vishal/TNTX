@@ -68,6 +68,7 @@ export function NavBar({ items, className }) {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                download={item.download}
                 className={linkClass}
               >
                 {linkContent}

@@ -171,8 +171,8 @@ export const HomePage = () => {
                 <span className="block mb-3 text-white drop-shadow-2xl">
                   <SplitTextReveal text="Meet mills. See real ex-mill pricing." delay={0.2} />
                 </span>
-                <span className="block text-industrial-orange drop-shadow-2xl mt-2">
-                  <SplitTextReveal text="Learn how sourcing really works." delay={1.2} />
+                <span className="block drop-shadow-2xl mt-2" style={{ color: '#C8500A' }}>
+                  <SplitTextReveal text="Learn how sourcing really works." delay={1.2} color="#C8500A" />
                 </span>
               </h1>
 
@@ -201,7 +201,7 @@ export const HomePage = () => {
                     </Button>
                   </a>
 
-                  <a href="#" target="_blank" rel="noopener noreferrer" className="block w-full sm:w-auto">
+                  <a href="/TNTX_BROUCHURE.pdf" download="TNTX_BROUCHURE.pdf" target="_blank" rel="noopener noreferrer" className="block w-full sm:w-auto">
                     <Button
                       data-testid="hero-brochure-btn"
                       size="lg"
@@ -229,7 +229,7 @@ export const HomePage = () => {
 
               <div className="group bg-black/40 backdrop-blur-md border border-white/10 hover:border-industrial-orange/50 p-6 rounded-lg transition-all duration-300 hover:bg-black/60">
                 <Calendar strokeWidth={1.5} className="h-8 w-8 text-industrial-orange mx-auto mb-3" />
-                <div className="text-3xl sm:text-4xl font-heading font-bold text-white mb-1">7</div>
+                <div className="text-3xl sm:text-4xl font-heading font-bold text-white mb-1">9</div>
                 <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider">Days</div>
               </div>
 
@@ -244,7 +244,7 @@ export const HomePage = () => {
           {/* Countdown Timer Section */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-12 w-full border-t border-industrial-zinc/50 pt-8 backdrop-blur-sm bg-black/20 p-8 rounded-lg mt-16">
             <div className="flex-1 w-full md:w-auto">
-              <CountdownTimer targetDate={APP_CLOSE} label="APPLICATIONS CLOSE OCT 23RD" />
+              <CountdownTimer targetDate={APP_CLOSE} label="APPLICATIONS OPEN OCT 23RD" />
             </div>
 
             <div className="hidden md:block h-20 w-px bg-industrial-zinc/50"></div>
@@ -252,7 +252,7 @@ export const HomePage = () => {
             <div className="flex-1 text-center w-full md:w-auto">
               <div className="flex items-center justify-center gap-2 text-red-500 mb-3 animate-pulse">
                 <AlertCircle strokeWidth={1.5} className="h-4 w-4" />
-                <span className="label-text text-red-500 tracking-widest text-sm">APPLICATIONS CLOSE</span>
+                <span className="label-text text-red-500 tracking-widest text-sm">APPLICATIONS OPEN</span>
               </div>
               <p className="font-heading text-white text-3xl sm:text-4xl tracking-tight">October 23rd, 2026</p>
             </div>
@@ -335,7 +335,7 @@ export const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4">
           <RevealHeading className="mb-16 flex justify-center"><h2 className="text-3xl font-heading text-white text-center">PROGRAM <span className="text-industrial-orange">SNAPSHOT</span></h2></RevealHeading>
           <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {[{ v: "7", l: "Days", icon: Clock }, { v: "15", l: "Max Participants", icon: Users }, { v: "Coimbatore", l: "Location", icon: MapPin }, { v: "Lifetime", l: "Post-program Access", icon: Factory }].map((d, i) => (
+            {[{ v: "9", l: "Days", icon: Clock }, { v: "15", l: "Max Participants", icon: Users }, { v: "Coimbatore", l: "Location", icon: MapPin }, { v: "Lifetime", l: "Post-program Access", icon: Factory }].map((d, i) => (
               <StaggerCard key={i} className="bg-industrial-obsidian border border-industrial-zinc p-6 text-center">
                 <d.icon strokeWidth={1.5} className="h-6 w-6 text-industrial-orange mx-auto mb-4 relative z-20" />
                 <div className={`stat-number mb-2 relative z-20 ${d.v === "Coimbatore" ? "!text-3xl sm:!text-4xl" : ""}`}>{d.v}</div>
@@ -397,7 +397,7 @@ export const HomePage = () => {
                 </a>
                 <div className="mt-6 space-y-2 text-center">
                   <p className="text-white font-body text-xs opacity-90 font-bold">
-                    Applications close October 23rd, 2026.
+                    Applications open October 23rd, 2026.
                   </p>
                   <p className="text-industrial-linen font-body text-xs opacity-60 uppercase tracking-widest text-[10px]">
                     15 seats · Selection based on fit
@@ -535,7 +535,7 @@ export const HomePage = () => {
                 Start Your Application →
               </Button>
             </a>
-            <p className="text-industrial-smoke font-body text-sm mt-6 opacity-60 italic">Applications close October 23rd, 2026</p>
+            <p className="text-industrial-smoke font-body text-sm mt-6 opacity-60 italic">Applications open October 23rd, 2026</p>
           </RevealSection>
         </div>
       </section>
@@ -550,7 +550,7 @@ export const HomePage = () => {
           <RevealSection className="mb-12">
             <p className="font-body text-industrial-linen text-lg">
               15 seats. Cohort starts January 5th. <br />
-              <span className="text-white font-bold">Applications close October 23rd, 2026.</span>
+              <span className="text-white font-bold">Applications open October 23rd, 2026.</span>
             </p>
           </RevealSection>
 
