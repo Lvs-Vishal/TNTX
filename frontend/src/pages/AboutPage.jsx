@@ -6,19 +6,7 @@ import { SplitTextReveal, RevealSection } from "@/components/HeroAnimations";
 import { RevealHeading, StaggerContainer, StaggerCard } from "@/components/ScrollAnimations";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
-const DramaticBulletRow = ({ children }) => {
-  const ref = useRevealOnScroll();
-  return (
-    <div
-      ref={ref}
-      className="reveal-block bullet-row relative pl-6 py-2 border-l-4 border-transparent"
-      style={{ transform: "translateX(60px)", opacity: 0, transition: "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }}
-    >
-      <style>{`.reveal-block.is-visible.bullet-row { transform: translateX(0) !important; opacity: 1 !important; border-left-color: #C8500A !important; }`}</style>
-      <p className="font-body text-white text-lg leading-relaxed">{children}</p>
-    </div>
-  );
-};
+
 
 const TimelineStep = ({ step, index }) => {
   const ref = useRevealOnScroll(0.2);
@@ -123,11 +111,7 @@ export const AboutPage = () => {
       {/* The Gap */}
       <section className="py-20 bg-industrial-steel">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="space-y-8">
-            <DramaticBulletRow>You haven't watched a spinning mill manager decide quality grades while watching cotton prices fluctuate live.</DramaticBulletRow>
-            <DramaticBulletRow>You haven't seen how a single yarn defect creates a fabric disaster 500 meters later.</DramaticBulletRow>
-            <DramaticBulletRow>You don't know why a price quoted on Monday is invalid by Wednesday.</DramaticBulletRow>
-          </div>
+
           <RevealSection className="mt-12">
             <p className="font-body text-industrial-smoke text-lg mb-6 leading-relaxed">
               This gap is not your fault—it is a structural flaw in Western textile education. But in the commercial world, this gap costs money.
