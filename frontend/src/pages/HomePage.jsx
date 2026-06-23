@@ -7,6 +7,7 @@ import { Factory, Users, Calendar, CheckCircle2, XCircle, ArrowRight, Sparkles, 
 import { ThreadLines, SplitTextReveal, LoomWheel, RevealSection } from "@/components/HeroAnimations";
 import { RevealHeading, StaggerContainer, StaggerCard, HorizontalMarquee, AnimatedValueChain, ParallaxTestimonials } from "@/components/ScrollAnimations";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
+import BorderGlow from "@/components/ui/BorderGlow";
 
 // Cohort date - January 5, 2027
 const COHORT_START = new Date("2027-01-05T00:00:00");
@@ -223,23 +224,47 @@ export const HomePage = () => {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-3 gap-4 sm:gap-8 max-w-3xl mx-auto" style={{ opacity: 0, animation: 'pageFadeIn 0.8s ease 0.8s forwards' }}>
-              <div className="group bg-black/40 backdrop-blur-md border border-white/10 hover:border-industrial-orange/50 p-6 rounded-lg transition-all duration-300 hover:bg-black/60">
-                <Users strokeWidth={1.5} className="h-8 w-8 text-industrial-orange mx-auto mb-3" />
-                <div className="text-3xl sm:text-4xl font-heading font-bold text-white mb-1">15</div>
-                <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider">People</div>
-              </div>
+              <BorderGlow
+                glowColor="22 91 41"
+                backgroundColor="rgba(0, 0, 0, 0.4)"
+                colors={['#C8500A', '#ff7a2e', '#ffaa66']}
+                borderRadius={8}
+                className="group"
+              >
+                <div className="p-6 rounded-lg transition-all duration-300 group-hover:bg-black/20 flex flex-col h-full justify-center">
+                  <Users strokeWidth={1.5} className="h-8 w-8 text-industrial-orange mx-auto mb-3" />
+                  <div className="text-3xl sm:text-4xl font-heading font-bold text-white mb-1">15</div>
+                  <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider">People</div>
+                </div>
+              </BorderGlow>
 
-              <div className="group bg-black/40 backdrop-blur-md border border-white/10 hover:border-industrial-orange/50 p-6 rounded-lg transition-all duration-300 hover:bg-black/60">
-                <Calendar strokeWidth={1.5} className="h-8 w-8 text-industrial-orange mx-auto mb-3" />
-                <div className="text-3xl sm:text-4xl font-heading font-bold text-white mb-1">9</div>
-                <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider">Days</div>
-              </div>
+              <BorderGlow
+                glowColor="22 91 41"
+                backgroundColor="rgba(0, 0, 0, 0.4)"
+                colors={['#C8500A', '#ff7a2e', '#ffaa66']}
+                borderRadius={8}
+                className="group"
+              >
+                <div className="p-6 rounded-lg transition-all duration-300 group-hover:bg-black/20 flex flex-col h-full justify-center">
+                  <Calendar strokeWidth={1.5} className="h-8 w-8 text-industrial-orange mx-auto mb-3" />
+                  <div className="text-3xl sm:text-4xl font-heading font-bold text-white mb-1">9</div>
+                  <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider">Days</div>
+                </div>
+              </BorderGlow>
 
-              <div className="group bg-black/40 backdrop-blur-md border border-white/10 hover:border-industrial-orange/50 p-6 rounded-lg transition-all duration-300 hover:bg-black/60">
-                <MapPin strokeWidth={1.5} className="h-8 w-8 text-industrial-orange mx-auto mb-3" />
-                <div className="text-lg sm:text-xl font-heading font-bold text-white mb-1">CJB</div>
-                <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider">Location</div>
-              </div>
+              <BorderGlow
+                glowColor="22 91 41"
+                backgroundColor="rgba(0, 0, 0, 0.4)"
+                colors={['#C8500A', '#ff7a2e', '#ffaa66']}
+                borderRadius={8}
+                className="group"
+              >
+                <div className="p-6 rounded-lg transition-all duration-300 group-hover:bg-black/20 flex flex-col h-full justify-center">
+                  <MapPin strokeWidth={1.5} className="h-8 w-8 text-industrial-orange mx-auto mb-3" />
+                  <div className="text-lg sm:text-xl font-heading font-bold text-white mb-1">CJB</div>
+                  <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider">Location</div>
+                </div>
+              </BorderGlow>
             </div>
           </div>
 
