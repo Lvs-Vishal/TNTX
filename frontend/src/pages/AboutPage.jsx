@@ -112,7 +112,7 @@ export const AboutPage = () => {
       <section className="py-20 bg-industrial-steel">
         <div className="max-w-4xl mx-auto px-4">
 
-          <RevealSection className="mt-12">
+          <RevealSection className="mt-20 sm:mt-32">
             <p className="font-body text-industrial-smoke text-lg mb-6 leading-relaxed">
               This gap is not your fault—it is a structural flaw in Western textile education. But in the commercial world, this gap costs money.
             </p>
